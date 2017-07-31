@@ -16,7 +16,7 @@ class Header extends Component{
             </Col>
             <Col md="3">
             </Col>
-            <Col md="3">
+            <Col xs="12" md="3">
               <HeaderButton to="/login" name="로그인"/>{'  '}
               <HeaderButton to="/signup" name="회원가입"/>
             </Col>

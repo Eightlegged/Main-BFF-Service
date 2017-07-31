@@ -11,6 +11,7 @@ class PageContainer extends Component {
   render() {
     return (
         <div className="PageContainer">
+          <div id="PagePadding"/>
           <Route exact path="/" component={Introduce}/>
           <Route path="/login" component={Login}/>
           <Route path="/signup" component={SignUp}/>

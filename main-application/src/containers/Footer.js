@@ -7,7 +7,7 @@ class Footer extends Component {
   render() {
     return (
       <div className="Footer">
-        <span>made By</span>
+        <span>made By:</span>
         <img className="Eightlegged-Logo" src={TeamLogo}/>
       </div>
     );

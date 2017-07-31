@@ -5,87 +5,36 @@ import { Col , Row , Button, Form, FormGroup, Label, Input, FormText, Container 
 class SignUp extends Component {
   render() {
     return (
-      <Container>
-        <Row><div><h1> 회원가입 (초안) </h1></div></Row>
+      <Container fluid={true}>
         <Row>
-          <Col>
+        <Col md={{size: 4, offset: 4}}>
+          <div>
+            <h1> 회원가입</h1>
+          </div>
           <Form>
             <FormGroup row>
-              <Label for="exampleEmail" sm={2}>Email</Label>
-              <Col sm={10}>
-                <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
-              </Col>
+              <Label for="exampleEmail">Email</Label>
+              <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
             </FormGroup>
 
             <FormGroup row>
-              <Label for="examplePassword" sm={2}>Password</Label>
-              <Col sm={10}>
+              <Label for="examplePassword">Password</Label>
                 <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
-              </Col>
             </FormGroup>
 
             <FormGroup row>
-              <Label for="exampleSelect" sm={2}>Select</Label>
-              <Col sm={10}>
-                <Input type="select" name="select" id="exampleSelect" />
-              </Col>
+              <Label for="exampleSelect">Select</Label>
+              <Input type="select" name="select" id="exampleSelect" />
             </FormGroup>
 
             <FormGroup row>
-            <Label for="exampleSelectMulti" sm={2}>Select Multiple</Label>
-              <Col sm={10}>
-                <Input type="select" name="selectMulti" id="exampleSelectMulti" multiple />
-              </Col>
+              <Label for="exampleText">Text Area</Label>
+              <Input type="textarea" name="text" id="exampleText" />
             </FormGroup>
 
-            <FormGroup row>
-              <Label for="exampleText" sm={2}>Text Area</Label>
-              <Col sm={10}>
-                <Input type="textarea" name="text" id="exampleText" />
-              </Col>
-            </FormGroup>
-          
-            <FormGroup row>
-              <Label for="exampleFile" sm={2}>File</Label>
-              <Col sm={10}>
-                <Input type="file" name="file" id="exampleFile" />
-                <FormText color="muted">
-                  This is some placeholder block-level help text for the above input.
-                  It's a bit lighter and easily wraps to a new line.
-                </FormText>
-              </Col>
-            </FormGroup>
-
-            <FormGroup tag="fieldset" row>
-              <legend className="col-form-legend col-sm-2">Radio Buttons</legend>
-              <Col sm={10}>
-              <FormGroup check>
-                <Label check>
-                  <Input type="radio" name="radio2" />{' '}
-                  Option one is this and that—be sure to include why it's great
-                </Label>
-            </FormGroup>
-            
-            <FormGroup check>
-              <Label check>
-                <Input type="radio" name="radio2" />{' '}
-                  Option two can be something else and selecting it will deselect option one
-              </Label>
-            </FormGroup>
-            
-            <FormGroup check disabled>
-              <Label check>
-                <Input type="radio" name="radio2" disabled />{' '}
-                  Option three is disabled
-              </Label>
-            </FormGroup>
-
-            </Col>
-          </FormGroup>
 
           <FormGroup row>
-            <Label for="checkbox2" sm={2}>Checkbox</Label>
-            <Col sm={{ size: 10 }}>
+            <Col>
               <FormGroup check>
                 <Label check>
                   <Input type="checkbox" id="checkbox2" />{' '}
@@ -96,7 +45,7 @@ class SignUp extends Component {
           </FormGroup>
 
           <FormGroup check row>
-            <Col sm={{ size: 10, offset: 2 }}>
+            <Col>
               <Button>Submit</Button>
             </Col>
           </FormGroup>
