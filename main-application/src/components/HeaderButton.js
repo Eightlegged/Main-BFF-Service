@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Col } from 'reactstrap';
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
