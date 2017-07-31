@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 class HeaderButton extends Component {
   render() {
     return (
-      <Button color="info">
-        <Link to={this.props.to}>
+      <Button color="secondary">
+        <Link to={this.props.to} style={{color: '#404040'}}>
           {this.props.name}
         </Link>
       </Button>

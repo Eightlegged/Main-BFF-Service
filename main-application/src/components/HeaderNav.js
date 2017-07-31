@@ -7,13 +7,13 @@ class HeaderNav extends Component {
     return (
       <Nav>
         <NavItem>
-          <NavLink style={{color: '#00448D'}}><Link to="/">서비스 소개</Link></NavLink>
+          <NavLink><Link to="/" style={{color: '#7DFFB8'}}>서비스 소개</Link></NavLink>
         </NavItem>
         <NavItem>
-          <NavLink style={{color: '#00448D'}}><Link to="/">회의 리스트</Link></NavLink>
+          <NavLink><Link to="/" style={{color: '#7DFFB8'}}>회의 리스트</Link></NavLink>
         </NavItem>
         <NavItem>
-          <NavLink style={{color: '#00448D'}}><Link to="/">회의 분석</Link></NavLink>
+          <NavLink><Link to="/" style={{color: '#62AB83'}}>회의 분석</Link></NavLink>
         </NavItem>
       </Nav>
     );
