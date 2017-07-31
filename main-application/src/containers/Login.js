@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col , Row , Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
+import { Col, Row , Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
 
 class Login extends Component {
   render() {
