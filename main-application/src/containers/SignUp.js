@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Row , Button, Form, FormGroup, Label, Input, FormText, Container } from 'reactstrap';
+import { Col , Row , Button, Form, FormGroup, Label, Input, FormText, Container } from 'reactstrap';
 
 
 class SignUp extends Component {
