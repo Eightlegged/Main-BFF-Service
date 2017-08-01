@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom'
 import Introduce from '../components/Introduce';
 import Login from '../components/Login';
 import SignUp from '../components/SignUp'
+import MeetingListPage from '../components/MeetingListPage'
 
 import './PageContainer.css'
 
@@ -15,6 +16,7 @@ class PageContainer extends Component {
           <Route exact path="/" component={Introduce}/>
           <Route path="/login" component={Login}/>
           <Route path="/signup" component={SignUp}/>
+          <Route path="/meetinglist" component={MeetingListPage}/>
         </div>
     );
   }
