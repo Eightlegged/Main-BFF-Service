@@ -19,6 +19,9 @@ const options = {
 }
 
 class SttTest extends Component{
+    handleChange(event) {
+        this.setState({value: event.target.value});
+    }
 
     render() {
         const { transcript, 
@@ -31,15 +34,17 @@ class SttTest extends Component{
                 stopListening } = this.props
         
         
-        recognition.lang = 'ko-KR'
-
         if (!browserSupportsSpeechRecognition) {
+            alert('크롬을 사용해 주세요')
             return null
         }
 
+        
+        recognition.lang = 'ko-KR'
         return (
+            
         <div>
-            <Row style={{alignItems: "center"}}>
+            <Row>
                 <Col />
                 <Col>
                 <ButtonGroup>
@@ -57,9 +62,8 @@ class SttTest extends Component{
                 <Form>
                     <FormGroup>
                     <Label for="SttText">인식 결과</Label>
-                    <Input type="textarea" name="text" id="result_text" style={{ height: 150}}>
-                        {transcript}
-                    </Input>
+                    <Input type="textarea" name="text" id="result_text" style={{ height: 150}}
+                           value={transcript} onChange={this.handleChange} />
                     </FormGroup>
                 </Form>
                 </Col>
