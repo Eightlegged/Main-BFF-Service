@@ -33,6 +33,9 @@ export default class HeaderNavbar extends React.Component {
               <NavItem>
                 <NavLink><Link to="/" style={{color: '#404040'}}>회의 분석</Link></NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink><Link to="/SttTest" style={{color: '#404040'}}>stt test</Link></NavLink>
+              </NavItem>
             </Nav>
             <Nav className="ml-auto" navbar>
               <NavItem>
