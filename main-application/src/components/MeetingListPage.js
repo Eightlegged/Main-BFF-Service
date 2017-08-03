@@ -4,6 +4,7 @@ import { Button } from 'reactstrap';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 import MeetingList from './MeetingList';
+import Analysis from './Analysis';
 
 class MeetingListPage extends Component {
   constructor(props) {
@@ -22,67 +23,41 @@ class MeetingListPage extends Component {
     ];
 
     super(props);
+    /*
     var arr = [];
     for(var i=0; i<Data.length/5; i++){
       arr.push(Data.slice(5*i,5*i+5));
-    }
+    }*/
     this.state = {
-      data: arr
+      data: Data
     };
 
   }
 
   render() {
-
-
-
-
     return (
       <Container>
+        <Row >
+          <Col xs="12" md="8" >
+            <MeetingList ListData={this.state.data} />
+          </Col>
+          <Col xs="12" md="4" style={{textAlign: 'center'}}>
+            <div style={{height : 15}}/>
+            <Button color="success" style={{width: 160, height: 60}}>시작</Button>
+            <div style={{height : 30}}/>
+            <Button color="success" style={{width: 160, height: 60}}>끝내기</Button>
+            <div style={{height : 30}}/>
+            <Button color="success" style={{width: 160, height: 60}}>분석</Button>
+            <div style={{height : 30}}/>
+            <Button color="success" style={{width: 160, height: 60}}>ㅁㄴ</Button>
+            <div/>
+          </Col>
+        </Row>
+        <Row style={{height: '60'}}>
+        </Row>
         <Row>
-          <Col xs="12" md="5">
-            <MeetingList ListData={this.state.data[1]} />
-            <Pagination>
-              <PaginationItem>
-                <PaginationLink previous href="#" />
-              </PaginationItem>
-              {this.state.data.map((arr, i) => {
-                return(
-                  <PaginationItem>
-                    <PaginationLink>
-                      {i+1}
-                    </PaginationLink>
-                  </PaginationItem>
-                );
-              })}
-              <PaginationItem>
-                <PaginationLink next href="#" />
-              </PaginationItem>
-            </Pagination>
-          </Col>
-          <Col xs="12" md="1"/>
-          <Col xs="12" md="5">
-            <MeetingList ListData={this.state.data[1]} />
-            <Pagination>
-              <PaginationItem>
-                <PaginationLink previous href="#" />
-              </PaginationItem>
-              {this.state.data.map((arr, i) => {
-                return(
-                  <PaginationItem>
-                    <PaginationLink>
-                      {i+1}
-                    </PaginationLink>
-                  </PaginationItem>
-                );
-              })}
-              <PaginationItem>
-                <PaginationLink next href="#" />
-              </PaginationItem>
-            </Pagination>
-          </Col>
-          <Col xs="12" md="1">
-            <Button color="success">만들기</Button>
+          <Col>
+            <Analysis/>
           </Col>
         </Row>
       </Container>

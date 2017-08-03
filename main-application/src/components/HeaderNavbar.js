@@ -31,9 +31,6 @@ export default class HeaderNavbar extends React.Component {
                 <NavLink><Link to="/meetinglist" style={{color: '#404040'}}>회의 리스트</Link></NavLink>
               </NavItem>
               <NavItem>
-                <NavLink><Link to="/" style={{color: '#404040'}}>회의 분석</Link></NavLink>
-              </NavItem>
-              <NavItem>
                 <NavLink><Link to="/SttTest" style={{color: '#404040'}}>stt test</Link></NavLink>
               </NavItem>
             </Nav>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom'
+import { Route } from 'react-router-dom';
 
 import Introduce from '../components/Introduce';
 import Login from '../components/Login';
@@ -19,6 +19,7 @@ class PageContainer extends Component {
           <Route path="/signup" component={SignUp}/>
           <Route path="/meetinglist" component={MeetingListPage}/>
           <Route path="/SttTest" component={SttTest}/>
+          <div id="PagePadding"/>
         </div>
     );
   }
