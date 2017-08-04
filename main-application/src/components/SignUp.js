@@ -5,7 +5,7 @@ import { Col , Row , Button, Form, FormGroup, Label, Input, Container } from 're
 class SignUp extends Component {
   render() {
     return (
-      <Container fluid={true}>
+      <Container fluid={true} style={{textAlign: 'center'}}>
         <Row>
         <Col md={{size: 4, offset: 4}}>
           <div>

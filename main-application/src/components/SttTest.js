@@ -24,7 +24,7 @@ class SttTest extends Component{
     }
 
     render() {
-        const { transcript, 
+        const { transcript,
                 interimTranscript,
                 resetTranscript,
                 browserSupportsSpeechRecognition,
@@ -32,18 +32,18 @@ class SttTest extends Component{
                 recognition,
                 startListening,
                 stopListening } = this.props
-        
-        
+
+
         if (!browserSupportsSpeechRecognition) {
             alert('크롬을 사용해 주세요')
             return null
         }
 
-        
+
         recognition.lang = 'ko-KR'
         return (
-            
-        <div>
+
+        <div style={{textAlign: 'center'}}>
             <Row>
                 <Col />
                 <Col>
@@ -55,7 +55,7 @@ class SttTest extends Component{
                 </Col>
                 <Col />
             </Row>
-            
+
             <Row>
 
                 <Col>
@@ -67,7 +67,7 @@ class SttTest extends Component{
                     </FormGroup>
                 </Form>
                 </Col>
- 
+
             </Row>
         </div>
         )

@@ -4,7 +4,7 @@ import { Col, Row , Button, Form, FormGroup, Label, Input, Container } from 'rea
 class Login extends Component {
   render() {
     return (
-      <Container fluid={true}>
+      <Container fluid={true} style={{textAlign: 'center'}}>
         <Row>
           <Col xs={{size: 10, offset: 1}}md={{size: 2, offset: 5}}>
             <h1> 로그인 </h1>
