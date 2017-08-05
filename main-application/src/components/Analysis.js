@@ -24,18 +24,18 @@ class Analysis extends Component {
         </div>
         <div style={{height: 10}}>
         </div>
-        <Nav>
-          <NavItem>
+        <Nav style={{marginLeft: 20}}>
+          <NavItem style={{border: "2px solid #eceeef"}}>
             <NavLink><Link to="/meetinglist/keyword" style={{color: 'black'}}>Keyword</Link></NavLink>
           </NavItem>
-          <NavItem>
+          <NavItem style={{border: "2px solid #eceeef"}}>
             <NavLink><Link to="/meetinglist/content" style={{color: 'black'}}>회의 내용</Link></NavLink>
           </NavItem>
-          <NavItem>
+          <NavItem style={{border: "2px solid #eceeef"}}>
             <NavLink><Link to="/meetinglist/article" style={{color: 'black'}}>관련 기사</Link></NavLink>
           </NavItem>
         </Nav>
-        <div style={{height: 500, margin: 15, border: "1px solid #eceeef"}}>
+        <div style={{height: 500, margin: 15, marginTop: 0, border: "1px solid #eceeef"}}>
           <Route path="/meetinglist/keyword" component={Keyword}/>
           <Route path="/meetinglist/content" component={Keyword}/>
           <Route path="/meetinglist/article" component={Keyword}/>

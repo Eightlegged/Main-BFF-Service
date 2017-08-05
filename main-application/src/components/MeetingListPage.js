@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { Button } from 'reactstrap';
-import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 import MeetingList from './MeetingList';
 import Analysis from './Analysis';
@@ -36,27 +35,12 @@ class MeetingListPage extends Component {
 
   render() {
     return (
-      <Container>
-        <Row >
-          <Col xs="12" md="8" >
+      <Container fluid={true}>
+        <Row>
+          <Col xs="12" md="4" >
             <MeetingList ListData={this.state.data} />
           </Col>
-          <Col xs="12" md="4" style={{textAlign: 'center'}}>
-            <div style={{height : 15}}/>
-            <Button color="success" style={{width: 160, height: 60}}>시작</Button>
-            <div style={{height : 30}}/>
-            <Button color="success" style={{width: 160, height: 60}}>끝내기</Button>
-            <div style={{height : 30}}/>
-            <Button color="success" style={{width: 160, height: 60}}>분석</Button>
-            <div style={{height : 30}}/>
-            <Button color="success" style={{width: 160, height: 60}}>ㅁㄴ</Button>
-            <div/>
-          </Col>
-        </Row>
-        <Row style={{height: '60'}}>
-        </Row>
-        <Row>
-          <Col>
+          <Col xs="12" md="8">
             <Analysis/>
           </Col>
         </Row>

@@ -19,12 +19,12 @@ class MeetingList extends Component {
             </tr>
           </thead>
         </Table>
-        <div style={{height: "320", overflow: "auto", borderBottom: "1px solid #eceeef"}}>
+        <div style={{height: 650, overflow: "auto", borderBottom: "1px solid #eceeef"}}>
           <Table bordered>
             <tbody>
-              {this.props.ListData.map((data) => {
+              {this.props.ListData.map((data, i) => {
                 return (
-                  <tr style={{textAlign : 'left'}}>
+                  <tr style={{textAlign : 'left'}} key={i}>
                     <td><div>{data.date}</div><div>{data.name}</div></td>
                   </tr>
                 );
