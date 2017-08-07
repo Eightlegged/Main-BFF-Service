@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import { Button } from 'reactstrap';
 
 import MeetingList from './MeetingList';
 import MeetingAnalysis from './MeetingAnalysis';

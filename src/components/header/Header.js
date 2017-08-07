@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Container } from 'reactstrap';
 
 import HeaderNavbar from './HeaderNavbar';

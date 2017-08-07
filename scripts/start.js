@@ -70,7 +70,7 @@ choosePort(HOST, DEFAULT_PORT)
       publicPath: config.output.publicPath,
       quiet: true,
       proxy: {
-          "*": "http://localhost:8080"
+          "*": "http://localhost:8001"
       }
     }).listen(8001, '0.0.0.0', function (err, result) {
       if (err) {
