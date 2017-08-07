@@ -3,7 +3,6 @@
 Smart Meeting Assistant 어플리케이션의 Single Page Application 기반의 Backend For Frontend 서비스
 
 
-
 ### 사용 프레임워크(런타임 및 버전 상세 필요)
 * Node.js
 * React.js
@@ -12,12 +11,13 @@ Smart Meeting Assistant 어플리케이션의 Single Page Application 기반의 
 ### 프로젝트 구조
 Express기반의 서버에 React.js로 구현한 프론트엔드 어플리케이션을 PaaS상에 배포
 
-### 로컬 구동
-main-bff-service/main-application 이동 후 다음 명령어 실행
+### 로컬 리액트 앱 구동
+main-bff-service 이동 후 다음 명령어 실행
 
-\'$ npm start\'
+  npm install
+  npm start
 
-이후 http://localhost:3000 에서 테스트
+이후 http://localhost:3000 에서 어플리케이션 테스트
 
 ### 기능
 > 메인(디폴트 서비스 소개 페이지)
