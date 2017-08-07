@@ -14,8 +14,10 @@ Express기반의 서버에 React.js로 구현한 프론트엔드 어플리케이
 ### 로컬 리액트 앱 구동
 main-bff-service 이동 후 다음 명령어 실행
 
-  npm install
-  npm start
+<pre><code>
+$ npm install
+$ npm start
+</code></pre>
 
 이후 http://localhost:3000 에서 어플리케이션 테스트
 
