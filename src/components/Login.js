@@ -33,6 +33,11 @@ class Login extends Component {
                     });
                 }
                 else{
+                  let loginData = {
+                        isLoggedIn: true,
+                        email: id
+                  };
+                  document.cookie = 'key=' + btoa(JSON.stringify(loginData));
                   this.props.history.push('/');
                 }
             }
@@ -68,10 +73,5 @@ class Login extends Component {
   }
 
 }
-
-Login.propTypes = {
-    onLogin: React.PropTypes.func
-};
-
 
 export default withRouter(Login);

@@ -5,9 +5,7 @@ import { Table } from 'reactstrap';
 import MeetingCreate from './MeetingCreate';
 
 class MeetingList extends Component {
-  constructor(props) {
-    super(props);
-  }
+
 
   render() {
     return (

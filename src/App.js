@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginCheck } from './actions/Authentication';
-import axios from 'axios';
 
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer'
@@ -18,7 +17,26 @@ import './App.css';
 class App extends Component {
   constructor(props){
     super(props);
-    this.props.loginCheck();
+
+    function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+    }
+
+    let loginData = getCookie('key');
+
+    if(typeof loginData === "undefined") return;
+
+    loginData = JSON.parse(atob(loginData));
+
+    if(!loginData.isLoggedIn) {
+      return;
+    }else{
+      console.log(loginData);
+      this.props.loginCheck(loginData.email, loginData.isLoggedIn);
+      return;
+    }
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -54,8 +72,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      loginCheck: () => {
-          return dispatch(loginCheck());
+      loginCheck: (email, password) => {
+          return dispatch(loginCheck(email, password));
       }
     };
 };
