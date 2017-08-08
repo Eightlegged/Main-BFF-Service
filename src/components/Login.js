@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Col, Row , Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
+import { withRouter } from 'react-router'
+
 
 class Login extends Component {
   constructor(props) {
@@ -20,7 +22,7 @@ class Login extends Component {
   }
 
   handleLogin() {
-        let id = this.state.username;
+        let id = this.state.email;
         let pw = this.state.password;
 
         this.props.onLogin(id, pw).then(
@@ -29,6 +31,9 @@ class Login extends Component {
                     this.setState({
                         password: ''
                     });
+                }
+                else{
+                  this.props.history.push('/');
                 }
             }
         );
@@ -69,4 +74,4 @@ Login.propTypes = {
 };
 
 
-export default Login;
+export default withRouter(Login);

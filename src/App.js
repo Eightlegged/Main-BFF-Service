@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { loginCheck } from './actions/Authentication';
+import axios from 'axios';
 
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer'
@@ -10,12 +12,13 @@ import SignUp from './components/SignUp'
 import Meeting from './components/meeting/Meeting'
 import SttTest from './components/SttTest'
 
+
 import './App.css';
 
 class App extends Component {
   constructor(props){
     super(props);
-    console.log(this.props.status);
+    this.props.loginCheck();
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -26,8 +29,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <h1>{this.props.status.currentUser}</h1>
-          <Header/>
+          <Header status={this.props.status}/>
           <div className="PageContainer">
             <div id="PagePadding"/>
             <Route exact path="/" component={Introduce}/>
@@ -51,7 +53,11 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {};
+    return {
+      loginCheck: () => {
+          return dispatch(loginCheck());
+      }
+    };
 };
 
 export default connect(mapStateToProps,mapDispatchToProps)(App)

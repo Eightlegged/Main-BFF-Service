@@ -11,7 +11,9 @@ let port = 8000;
 app.use(session({
  secret: '@#@$MYSIGN#@$#$',
  resave: false,
- saveUninitialized: true
+ saveUninitialized: true,
+ isLoggedIn: false,
+ email: ''
 }));
 
 // SETUP MIDDLEWARE
@@ -21,15 +23,9 @@ app.use(bodyParser.json());
 app.use('/', express.static(__dirname + '/../../build'));
 
 app.get('/session', (req, res) => {
-  if(session.username){
-    res.json({
-      success: true
-    });
-  }else{
-    res.json({
-      success: false
-    })
-  }
+  res.json({
+    session: req.session
+  })
 })
 
 app.get('/hello', (req, res) => {
