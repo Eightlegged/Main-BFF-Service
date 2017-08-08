@@ -6,7 +6,6 @@ import { withRouter } from 'react-router'
 class Login extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.test);
     this.state = {
         email: "",
         password: ""
@@ -33,11 +32,7 @@ class Login extends Component {
                     });
                 }
                 else{
-                  let loginData = {
-                        isLoggedIn: true,
-                        email: id
-                  };
-                  document.cookie = 'key=' + btoa(JSON.stringify(loginData));
+                  
                   this.props.history.push('/');
                 }
             }

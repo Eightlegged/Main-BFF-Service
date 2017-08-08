@@ -2,6 +2,7 @@ import {
     AUTH_LOGIN,
     AUTH_LOGIN_SUCCESS,
     AUTH_LOGIN_FAILURE,
+    AUTH_LOGIN_END,
     AUTH_LOGOUT,
     AUTH_LOGOUT_SUCCESS,
     AUTH_LOGOUT_FAILURE,
@@ -60,15 +61,9 @@ export function loginCheck(email, isLoggedIn) {
     };
 }
 
-export function sessionCheck() {
-  return (dispatch) => {
-    return axios.get('http://127.0.0.1:8000/api/authentication/session')
-    .then((response) => {
-      console.log(response);
-      dispatch(loginCheck(response.data.email, response.data.isLoggedIn));
-    }).catch((error) => {
-      console.log(error);
-    });
+export function loginEnd() {
+  return {
+      type: AUTH_LOGIN_END
   }
 }
 

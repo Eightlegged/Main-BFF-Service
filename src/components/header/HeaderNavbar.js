@@ -16,11 +16,9 @@ class HeaderNavbar extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    console.log(nextProps);
   };
 
   renderAuthenicationButton(){
-    console.log(this.props);
     if(!this.props.authentication.status.isLoggedIn){
       return(
         <Nav className="ml-auto" navbar>

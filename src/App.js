@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { loginCheck } from './actions/Authentication';
+import { loginCheck, loginEnd } from './actions/Authentication';
 
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer'
@@ -18,6 +18,9 @@ class App extends Component {
   constructor(props){
     super(props);
 
+    this.state = {
+      isLoggedIn: false
+    }
     function getCookie(name) {
         var value = "; " + document.cookie;
         var parts = value.split("; " + name + "=");
@@ -27,20 +30,28 @@ class App extends Component {
     let loginData = getCookie('key');
 
     if(typeof loginData === "undefined") return;
+    if(this.props.login.status == "WAITING") return;
 
     loginData = JSON.parse(atob(loginData));
 
     if(!loginData.isLoggedIn) {
       return;
     }else{
-      console.log(loginData);
       this.props.loginCheck(loginData.email, loginData.isLoggedIn);
       return;
     }
+
   }
 
   componentDidUpdate(prevProps, prevState){
-    console.log(this.props.status);
+    console.log(prevProps.login.status);
+    console.log(this.props.login.status);
+    if(this.props.login.status == 'SUCCESS'){
+      this.props.loginEnd();
+      this.setState({
+        isLoggedIn: true
+      })
+    }
   }
 
   render() {
@@ -51,10 +62,34 @@ class App extends Component {
           <div className="PageContainer">
             <div id="PagePadding"/>
             <Route exact path="/" component={Introduce}/>
-            <Route path="/login" component={LoginContainer}/>
-            <Route path="/signup" component={SignUp}/>
-            <Route path="/meetinglist" component={Meeting}/>
-            <Route path="/SttTest" component={SttTest}/>
+            <Route path="/login" render={() => (
+              this.state.isLoggedIn ? (
+                <Redirect to="/"/>
+              ) : (
+                <LoginContainer/>
+              )
+            )}/>
+            <Route path="/signup" render={() => (
+            this.state.isLoggedIn ? (
+                <Redirect to="/"/>
+              ) : (
+                <SignUp/>
+              )
+            )}/>
+            <Route path="/meetinglist" render={() => (
+            this.state.isLoggedIn ? (
+                <Meeting/>
+              ) : (
+                <Redirect to="/login"/>
+              )
+            )}/>
+            <Route path="/SttTest" render={() => (
+            this.state.isLoggedIn ? (
+                <SttTest/>
+              ) : (
+                <Redirect to="/login"/>
+              )
+            )}/>
             <div id="PagePadding"/>
           </div>
           <Footer/>
@@ -66,7 +101,9 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        status: state.authentication.status
+        login: state.authentication.login,
+        status: state.authentication.status,
+        logout: state.authentication.logout
     };
 };
 
@@ -74,6 +111,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
       loginCheck: (email, password) => {
           return dispatch(loginCheck(email, password));
+      },
+      loginEnd: () => {
+          return dispatch(loginEnd());
       }
     };
 };

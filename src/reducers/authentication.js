@@ -42,6 +42,12 @@ export default function authentication(state, action) {
                     currentUser: { $set: action.email }
                 }
             });
+        case types.AUTH_LOGIN_END:
+            return update(state, {
+                login: {
+                    status: { $set: 'END'}
+                }
+            })
         case types.AUTH_LOGIN_FAILURE:
             return update(state, {
                 login: {

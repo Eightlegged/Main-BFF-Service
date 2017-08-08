@@ -15,6 +15,11 @@ class LoginContainer extends Component {
   handleLogin(id, pw) {
       return this.props.loginRequest(id, pw).then(() => {
         if(this.props.status === "SUCCESS") {
+          let loginData = {
+                isLoggedIn: true,
+                email: id
+          };
+          document.cookie = 'key=' + btoa(JSON.stringify(loginData));
           return true;
         } else {
           console.log('login failed');
