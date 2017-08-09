@@ -8,7 +8,6 @@ class LoginContainer extends Component {
 
     super(props);
 
-    console.log('test');
     this.handleLogin = this.handleLogin.bind(this);
   }
 

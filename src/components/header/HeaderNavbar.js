@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import { Link, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { logoutRequest } from '../../actions/Authentication';
 
-class HeaderNavbar extends React.Component {
+class HeaderNavbar extends Component {
   constructor(props) {
     super(props);
-
+    console.log(this.props.authentication);
+    console.log(this.props.logoutRequest);
     this.handleLogout = this.handleLogout.bind(this);
     this.toggle = this.toggle.bind(this);
     this.state = {
@@ -85,18 +84,4 @@ class HeaderNavbar extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        authentication: state.authentication
-    };
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        logoutRequest: () => {
-            return dispatch(logoutRequest());
-        }
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderNavbar);
+export default HeaderNavbar;

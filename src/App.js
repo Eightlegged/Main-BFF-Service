@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginCheck, loginEnd, logoutEnd } from './actions/Authentication';
 
-import Header from './components/header/Header';
+import HeaderContainer from './containers/HeaderContainer';
 import Footer from './components/footer/Footer'
 import Introduce from './components/Introduce';
 import LoginContainer from './containers/LoginContainer';
@@ -67,7 +67,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Header status={this.props.status}/>
+          <HeaderContainer status={this.props.status}/>
           <div className="PageContainer">
             <div id="PagePadding"/>
             <Route exact path="/" component={Introduce}/>
