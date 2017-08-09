@@ -10,5 +10,11 @@ export const AUTH_LOGOUT_SUCCESS = "AUTH_LOGOUT_SUCCESS";
 export const AUTH_LOGOUT_FAILURE = "AUTH_LOGOUT_FAILURE";
 export const AUTH_LOGOUT_END = "AUTH_LOGOUT_END";
 
-
 export const AUTH_LOGGED_IN = "AUTH_LOGGED_IN";
+
+/* REGISTER */
+
+export const SIGNUP = "SIGNUP";
+export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
+export const SIGNUP_FAILURE = "SIGNUP_FAILURE";
+export const SIGNUP_END = "SIGNUP_END";

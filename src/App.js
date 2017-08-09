@@ -7,7 +7,7 @@ import HeaderContainer from './containers/HeaderContainer';
 import Footer from './components/footer/Footer'
 import Introduce from './components/Introduce';
 import LoginContainer from './containers/LoginContainer';
-import SignUp from './components/SignUp'
+import SignUpContainer from './containers/SignUpContainer';
 import Meeting from './components/meeting/Meeting'
 import SttTest from './components/SttTest'
 
@@ -82,7 +82,7 @@ class App extends Component {
             this.state.isLoggedIn ? (
                 <Redirect to="/"/>
               ) : (
-                <SignUp/>
+                <SignUpContainer/>
               )
             )}/>
             <Route path="/meetinglist" render={() => (
