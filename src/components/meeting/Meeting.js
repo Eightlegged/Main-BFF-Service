@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'reactstrap';
 
 import MeetingList from './MeetingList';
 import MeetingAnalysis from './MeetingAnalysis';
+import MeetingCreate from './MeetingCreate';
 
 class Meeting extends Component {
   constructor(props) {
@@ -13,11 +14,8 @@ class Meeting extends Component {
       {date : "2017-07-04", name : "wer", etc: "...."},
       {date : "2017-07-05", name : "ghv", etc: "...."},
       {date : "2017-07-06", name : "rtf", etc: "...."},
-      {date : "2017-07-07", name : "vfd", etc: "...."},
-      {date : "2017-07-08", name : "sdf", etc: "...."},
-      {date : "2017-07-09", name : "fgr", etc: "...."},
-      {date : "2017-07-10", name : "mgh", etc: "...."},
-      {date : "2017-07-11", name : "eer", etc: "...."}
+      {date : "2017-07-07", name : "vfd", etc: "...."}
+
     ];
 
     super(props);
@@ -34,10 +32,11 @@ class Meeting extends Component {
 
   render() {
     return (
-      <Container fluid={true}>
-        <Row>
+      <Container fluid={true} style={{height: "100%", overflow: "auto"}}>
+        <Row style={{height: "98%"}}>
           <Col xs="12" md="4" >
             <MeetingList ListData={this.state.data} />
+            <MeetingCreate/>
           </Col>
           <Col xs="12" md="8">
             <MeetingAnalysis/>

@@ -66,42 +66,44 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
+        <div className="App" style={{height: "100%"}}>
           <HeaderContainer status={this.props.status}/>
-          <div className="PageContainer">
+          <div id="PageContainer">
             <div id="PagePadding"/>
-            <Route exact path="/" component={Introduce}/>
-            <Route path="/login" render={() => (
+            <div id="PageRouter">
+              <Route exact path="/" component={Introduce}/>
+              <Route path="/login" render={() => (
+                this.state.isLoggedIn ? (
+                  <Redirect to="/"/>
+                ) : (
+                  <LoginContainer/>
+                )
+              )}/>
+              <Route path="/signup" render={() => (
               this.state.isLoggedIn ? (
-                <Redirect to="/"/>
-              ) : (
-                <LoginContainer/>
-              )
-            )}/>
-            <Route path="/signup" render={() => (
-            this.state.isLoggedIn ? (
-                <Redirect to="/"/>
-              ) : (
-                <SignUpContainer/>
-              )
-            )}/>
-            <Route path="/meetinglist" render={() => (
-            this.state.isLoggedIn ? (
-                <Meeting/>
-              ) : (
-                <Redirect to="/login"/>
-              )
-            )}/>
-            <Route path="/SttTest" render={() => (
-            this.state.isLoggedIn ? (
-                <SttTest/>
-              ) : (
-                <Redirect to="/login"/>
-              )
-            )}/>
-            <div id="PagePadding"/>
+                  <Redirect to="/"/>
+                ) : (
+                  <SignUpContainer/>
+                )
+              )}/>
+              <Route path="/meetinglist" render={() => (
+              this.state.isLoggedIn ? (
+                  <Meeting/>
+                ) : (
+                  <Redirect to="/login"/>
+                )
+              )}/>
+              <Route path="/SttTest" render={() => (
+              this.state.isLoggedIn ? (
+                  <SttTest/>
+                ) : (
+                  <Redirect to="/login"/>
+                )
+              )}/>
+            </div>
           </div>
-          <Footer/>
+          <div id="PagePadding"/>
+          <Footer />
         </div>
       </Router>
     );

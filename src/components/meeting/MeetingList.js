@@ -1,36 +1,85 @@
 import React, { Component } from 'react';
 //
 import { Table } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
+import classnames from 'classnames';
 
-import MeetingCreate from './MeetingCreate';
 
 class MeetingList extends Component {
+  constructor(props) {
+    super(props);
+    console.log(document.getElementById("PageContainer").style);
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      activeTab: 'done'
+    };
+  }
 
+  toggle(tab) {
+    if (this.state.activeTab !== tab) {
+      this.setState({
+        activeTab: tab
+      });
+    }
+  }
 
   render() {
     return (
-      <div style={{ border: "1px solid #eceeef"}}>
-        <Table bordered>
-          <thead>
-            <tr>
-              <th>회의/세미나</th>
-            </tr>
-          </thead>
-        </Table>
-        <div style={{height: 650, overflow: "auto", borderBottom: "1px solid #eceeef"}}>
-          <Table bordered>
-            <tbody>
-              {this.props.ListData.map((data, i) => {
-                return (
-                  <tr style={{textAlign : 'left'}} key={i}>
-                    <td><div>{data.date}</div><div>{data.name}</div></td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </Table>
-        </div>
-        <MeetingCreate className={""}/>
+      <div style={{height: "90%"}}>
+        <Nav tabs>
+          <NavItem>
+            <NavLink
+              className={classnames({ active: this.state.activeTab === 'done' })}
+              onClick={() => { this.toggle('done'); }}
+            >
+              종료된 회의
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              className={classnames({ active: this.state.activeTab === 'to do' })}
+              onClick={() => { this.toggle('to do'); }}
+            >
+              시작 전 회의
+            </NavLink>
+          </NavItem>
+        </Nav>
+        <TabContent activeTab={this.state.activeTab} style={{height: "90%", overflow: "auto"}}>
+          <TabPane tabId="done">
+            <div >
+              <Table bordered>
+                <thead>
+                </thead>
+                <tbody>
+                  {this.props.ListData.map((data, i) => {
+                    return (
+                      <tr style={{textAlign : 'left'}} key={i}>
+                        <td><div>{data.date}</div><div>{data.name}</div></td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </Table>
+            </div>
+          </TabPane>
+          <TabPane tabId="to do" >
+            <div >
+              <Table bordered>
+                <thead>
+                </thead>
+                <tbody >
+                  {this.props.ListData.map((data, i) => {
+                    return (
+                      <tr style={{textAlign : 'left'}} key={i}>
+                        <td><div>{data.date}</div><div>{data.name}</div></td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </Table>
+            </div>
+          </TabPane>
+        </TabContent>
       </div>
     );
   }

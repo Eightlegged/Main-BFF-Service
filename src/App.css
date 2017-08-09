@@ -1,10 +1,14 @@
 .App {
 }
 
-.PageContainer {
-  min-height: 700px;
+#PageContainer {
+  height: 80%
 }
 
 #PagePadding {
-  height: 100px;
+  height: 7%;
+}
+
+#PageRouter {
+  height: 80%;
 }

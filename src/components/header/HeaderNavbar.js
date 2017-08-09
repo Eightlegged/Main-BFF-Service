@@ -63,14 +63,11 @@ class HeaderNavbar extends Component {
       <div>
         <Navbar color="faded" light toggleable>
           <NavbarToggler right onClick={this.toggle} />
-          <NavbarBrand href="/">SMA</NavbarBrand>
+          <NavbarBrand><Link to="/" style={{color: '#404040'}}>SMA</Link></NavbarBrand>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav navbar>
               <NavItem>
-                <NavLink><Link to="/" style={{color: '#404040'}}>서비스 소개</Link></NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink><Link to="/meetinglist" style={{color: '#404040'}}>회의 리스트</Link></NavLink>
+                <NavLink active><Link to="/meetinglist" style={{color: '#404040'}}>회의 리스트</Link></NavLink>
               </NavItem>
               <NavItem>
                 <NavLink><Link to="/SttTest" style={{color: '#404040'}}>stt test</Link></NavLink>

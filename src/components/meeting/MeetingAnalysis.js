@@ -3,12 +3,80 @@ import { Nav, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-
+import { TabContent, TabPane, Card, CardText, CardBlock, CardTitle, CardSubtitle, Button, Breadcrumb } from 'reactstrap';
+import classnames from 'classnames';
 import MeetingKeyword from './MeetingKeyword';
 
 class MeetingAnalysis extends Component {
+  constructor(props) {
+   super(props);
 
+   this.toggle = this.toggle.bind(this);
+   this.state = {
+     activeTab: '1'
+   };
+ }
 
+ toggle(tab) {
+   if (this.state.activeTab !== tab) {
+     this.setState({
+       activeTab: tab
+     });
+   }
+ }
+
+  render(){
+    return (
+    <div style={{height: "95%"}}>
+      <Card style={{height: "100%"}}>
+        <CardBlock style={{height: "100%"}}>
+
+          <Breadcrumb>Title</Breadcrumb>
+          <CardText>hellloooooooo</CardText>
+          <div style={{height: "80%", overflow: "auto"}}>
+            <Nav tabs>
+              <NavItem>
+                <NavLink
+                  className={classnames({ active: this.state.activeTab === '1' })}
+                  onClick={() => { this.toggle('1'); }}
+                >
+                  Tab1
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  className={classnames({ active: this.state.activeTab === '2' })}
+                  onClick={() => { this.toggle('2'); }}
+                >
+                  Moar Tabs
+                </NavLink>
+              </NavItem>
+            </Nav>
+            <TabContent activeTab={this.state.activeTab} style={{height: "85%", overflow: "auto", borderBottom: "2px solid #eceeef", borderLeft: "1px solid #eceeef", borderRight: "1px solid #eceeef"}}>
+              <TabPane tabId="1" >
+                  <p>sadsssssssssssssssssssssss</p>
+                  <p>sadsssssssssssssssssssssss</p>
+                  <p>sadsssssssssssssssssssssss</p>
+                  <p>sadsssssssssssssssssssssss</p>
+                  <p>sadsssssssssssssssssssssss</p>
+                  <p>sadsssssssssssssssssssssss</p>
+                  <p>sadsssssssssssssssssssssss</p>
+                  <p>sadsssssssssssssssssssssss</p>
+                  <p>sadsssssssssssssssssssssss</p>
+              </TabPane>
+              <TabPane tabId="2">
+
+              </TabPane>
+            </TabContent>
+          </div>
+        </CardBlock>
+      </Card>
+    </div>
+  );
+  }
+}
+
+/*
   render() {
     return (
       <Router>
@@ -43,6 +111,6 @@ class MeetingAnalysis extends Component {
       </Router>
     );
   }
-}
+*/
 
 export default MeetingAnalysis;
