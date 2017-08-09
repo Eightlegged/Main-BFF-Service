@@ -26,12 +26,7 @@ export default function authentication(state, action) {
                     status: { $set: 'WAITING' }
                 }
             });
-        case types.AUTH_LOGOUT:
-            return update(state, {
-                logout: {
-                    status: { $set: 'WAITING' }
-                }
-            });
+
         case types.AUTH_LOGIN_SUCCESS:
             return update(state, {
                 login: {
@@ -54,6 +49,12 @@ export default function authentication(state, action) {
                     status: { $set: 'FAILURE' }
                 }
             });
+        case types.AUTH_LOGOUT:
+            return update(state, {
+                logout: {
+                    status: { $set: 'WAITING' }
+                }
+            });
         case types.AUTH_LOGOUT_SUCCESS:
             return update(state, {
                 logout: {
@@ -70,6 +71,12 @@ export default function authentication(state, action) {
                     status: { $set: 'FAILURE' }
                 }
             });
+        case types.AUTH_LOGOUT_END:
+            return update(state, {
+                logout: {
+                    status: { $set: 'END'}
+                }
+            })
         case types.AUTH_LOGGED_IN:
             return update(state, {
                 login: {

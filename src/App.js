@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { loginCheck, loginEnd } from './actions/Authentication';
+import { loginCheck, loginEnd, logoutEnd } from './actions/Authentication';
 
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer'
@@ -30,7 +30,7 @@ class App extends Component {
     let loginData = getCookie('key');
 
     if(typeof loginData === "undefined") return;
-    if(this.props.login.status == "WAITING") return;
+    if(this.props.logout.status == "END") return;
 
     loginData = JSON.parse(atob(loginData));
 
@@ -38,6 +38,9 @@ class App extends Component {
       return;
     }else{
       this.props.loginCheck(loginData.email, loginData.isLoggedIn);
+      this.setState({
+        isLoggedIn: loginData.isLoggedIn
+      })
       return;
     }
 
@@ -50,6 +53,12 @@ class App extends Component {
       this.props.loginEnd();
       this.setState({
         isLoggedIn: true
+      })
+    }
+    if(this.props.logout.status == 'SUCCESS'){
+      this.props.logoutEnd();
+      this.setState({
+        isLoggedIn: false
       })
     }
   }
@@ -114,6 +123,9 @@ const mapDispatchToProps = (dispatch) => {
       },
       loginEnd: () => {
           return dispatch(loginEnd());
+      },
+      logoutEnd: () => {
+          return dispatch(logoutEnd());
       }
     };
 };

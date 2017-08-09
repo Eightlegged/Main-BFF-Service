@@ -6,6 +6,7 @@ import {
     AUTH_LOGOUT,
     AUTH_LOGOUT_SUCCESS,
     AUTH_LOGOUT_FAILURE,
+    AUTH_LOGOUT_END,
     AUTH_LOGGED_IN
 } from './ActionTypes';
 import axios from 'axios';
@@ -53,19 +54,12 @@ export function loginFailure() {
     };
 }
 
-export function loginCheck(email, isLoggedIn) {
-    return {
-      type: AUTH_LOGGED_IN,
-      email,
-      isLoggedIn
-    };
-}
-
 export function loginEnd() {
   return {
       type: AUTH_LOGIN_END
   }
 }
+
 
 /* LOGOUT */
 export function logoutRequest() {
@@ -73,14 +67,8 @@ export function logoutRequest() {
         // Inform Login API is starting
         dispatch(logout());
 
-        return axios.get('http://127.0.0.1:8000/api/authentication/logout')
-        .then((response) => {
-            console.log(response);
-            dispatch(logoutSuccess());
-        }).catch((error) => {
-            // FAILED
-            dispatch(logoutFailure());
-        });
+        return dispatch(logoutSuccess());
+
     };
 }
 
@@ -99,5 +87,19 @@ export function logoutSuccess() {
 export function logoutFailure() {
     return {
         type: AUTH_LOGOUT_FAILURE
+    };
+}
+
+export function logoutEnd() {
+  return {
+      type: AUTH_LOGOUT_END
+  }
+}
+
+export function loginCheck(email, isLoggedIn) {
+    return {
+      type: AUTH_LOGGED_IN,
+      email,
+      isLoggedIn
     };
 }

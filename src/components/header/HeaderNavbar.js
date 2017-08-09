@@ -50,20 +50,13 @@ class HeaderNavbar extends React.Component {
   }
 
   handleLogout() {
-    return this.props.logoutRequest().then(() => {
-        if(this.props.authentication.logout.status === "SUCCESS") {
-          let loginData = {
-            isLoggedIn: false,
-            email: ""
-          }
-          document.cookie = 'key=' + btoa(JSON.stringify(loginData));
-
-          return (<Redirect to='/'/>);
-        } else {
-          alert('logout failed');
-        }
+      let loginData = {
+        isLoggedIn: false,
+        email: ""
       }
-    );
+      document.cookie = 'key=' + btoa(JSON.stringify(loginData));
+      this.props.logoutRequest()
+      return (<Redirect to='/'/>);
   }
 
   render() {

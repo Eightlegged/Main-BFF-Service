@@ -27,6 +27,7 @@ class Login extends Component {
         this.props.onLogin(id, pw).then(
             (success) => {
                 if(!success) {
+                    alert('login failed');
                     this.setState({
                         password: ''
                     });
