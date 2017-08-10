@@ -47,8 +47,6 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState){
-    console.log(prevProps.login.status);
-    console.log(this.props.login.status);
     if(this.props.login.status == 'SUCCESS'){
       this.props.loginEnd();
       this.setState({
@@ -66,7 +64,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App" style={{height: "100%"}}>
+        <div id="App">
           <HeaderContainer status={this.props.status}/>
           <div id="PageContainer">
             <div id="PagePadding"/>
@@ -101,8 +99,8 @@ class App extends Component {
                 )
               )}/>
             </div>
-          </div>
-          <div id="PagePadding"/>
+            <div id="PagePadding"/>
+          </div>  
           <Footer />
         </div>
       </Router>

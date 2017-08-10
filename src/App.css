@@ -1,12 +1,13 @@
-.App {
+#App {
+  height: 100%;
 }
 
 #PageContainer {
-  height: 80%
+  height: 80%;
 }
 
 #PagePadding {
-  height: 7%;
+  height: 9%;
 }
 
 #PageRouter {

@@ -51,7 +51,7 @@ class MeetingList extends Component {
                 <thead>
                 </thead>
                 <tbody>
-                  {this.props.ListData.map((data, i) => {
+                  {this.props.doneMeetings.map((data, i) => {
                     return (
                       <tr style={{textAlign : 'left'}} key={i}>
                         <td><div>{data.date}</div><div>{data.name}</div></td>
@@ -68,7 +68,7 @@ class MeetingList extends Component {
                 <thead>
                 </thead>
                 <tbody >
-                  {this.props.ListData.map((data, i) => {
+                  {this.props.todoMeetings.map((data, i) => {
                     return (
                       <tr style={{textAlign : 'left'}} key={i}>
                         <td><div>{data.date}</div><div>{data.name}</div></td>

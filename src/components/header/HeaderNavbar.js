@@ -5,8 +5,6 @@ import { Link, Redirect } from 'react-router-dom';
 class HeaderNavbar extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.authentication);
-    console.log(this.props.logoutRequest);
     this.handleLogout = this.handleLogout.bind(this);
     this.toggle = this.toggle.bind(this);
     this.state = {

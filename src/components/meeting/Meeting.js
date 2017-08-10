@@ -7,25 +7,30 @@ import MeetingCreate from './MeetingCreate';
 
 class Meeting extends Component {
   constructor(props) {
-    let Data = [
+    let DoneMeetings;
+    let TodoMeetings;
+
+    DoneMeetings = [
       {date : "2017-07-01", name : "ksd", etc: "...."},
       {date : "2017-07-02", name : "hyj", etc: "...."},
       {date : "2017-07-03", name : "asd", etc: "...."},
-      {date : "2017-07-04", name : "wer", etc: "...."},
-      {date : "2017-07-05", name : "ghv", etc: "...."},
-      {date : "2017-07-06", name : "rtf", etc: "...."},
-      {date : "2017-07-07", name : "vfd", etc: "...."}
+      {date : "2017-07-04", name : "wer", etc: "...."}
 
     ];
 
+    TodoMeetings = [
+      {date : "2017-08-09", name : "qwe", etc: "...."},
+      {date : "2017-08-10", name : "hbf", etc: "...."},
+      {date : "2017-08-11", name : "lui", etc: "...."},
+      {date : "2017-08-12", name : "mvc", etc: "...."}
+
+    ];
+
+
     super(props);
-    /*
-    var arr = [];
-    for(var i=0; i<Data.length/5; i++){
-      arr.push(Data.slice(5*i,5*i+5));
-    }*/
     this.state = {
-      data: Data
+      doneMeetings: DoneMeetings,
+      todoMeetings: TodoMeetings
     };
 
   }
@@ -35,7 +40,7 @@ class Meeting extends Component {
       <Container fluid={true} style={{height: "100%", overflow: "auto"}}>
         <Row style={{height: "98%"}}>
           <Col xs="12" md="4" >
-            <MeetingList ListData={this.state.data} />
+            <MeetingList doneMeetings={this.state.doneMeetings} todoMeetings={this.state.todoMeetings} />
             <MeetingCreate/>
           </Col>
           <Col xs="12" md="8">

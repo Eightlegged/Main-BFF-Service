@@ -7,8 +7,6 @@ import { logoutRequest } from '../actions/Authentication';
 class HeaderContainer extends Component {
   constructor(props){
     super(props);
-    console.log(this.props.authentication);
-    console.log(this.props.logoutRequest);
 
   }
 
