@@ -8,7 +8,8 @@
     "start": "node ./build/main.js",
     "development": "node ./scripts/development.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "teststart": "SET BABEL_ENV=production&&babel-node ./src/main.js --presets=es2015"
+    "teststart": "SET BABEL_ENV=production&&babel-node ./src/main.js --presets=es2015",
+    "buildbff": "cd ..&&npm install&&npm run build&&cd server&&npm install&&npm run build"
   },
   "author": "",
   "license": "ISC",

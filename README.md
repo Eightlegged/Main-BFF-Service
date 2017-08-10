@@ -46,6 +46,16 @@ $ npm start
 
 http://localhost:8000에서 서버구동
 
+###리액트 앱 빌드 및 서버 빌드 후 구동 자동화
+main-bff-service 디렉토리에서 다음 명령어 실행
+
+<pre><code>
+$ npm run serverstart
+</code></pre>
+
+이후 http://localhost:8000에서 테스트
+
+
 ### 기능
 > 메인(디폴트 서비스 소개 페이지)
 
