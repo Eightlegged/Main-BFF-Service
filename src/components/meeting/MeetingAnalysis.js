@@ -52,17 +52,14 @@ class MeetingAnalysis extends Component {
                 </NavLink>
               </NavItem>
             </Nav>
-            <TabContent activeTab={this.state.activeTab} style={{height: "85%", overflow: "auto", borderBottom: "2px solid #eceeef", borderLeft: "1px solid #eceeef", borderRight: "1px solid #eceeef"}}>
+            <TabContent activeTab={this.state.activeTab} style={{ overflow: "auto", borderBottom: "2px solid #eceeef", borderLeft: "1px solid #eceeef", borderRight: "1px solid #eceeef"}}>
               <TabPane tabId="1" >
                   <p>sadsssssssssssssssssssssss</p>
                   <p>sadsssssssssssssssssssssss</p>
                   <p>sadsssssssssssssssssssssss</p>
                   <p>sadsssssssssssssssssssssss</p>
                   <p>sadsssssssssssssssssssssss</p>
-                  <p>sadsssssssssssssssssssssss</p>
-                  <p>sadsssssssssssssssssssssss</p>
-                  <p>sadsssssssssssssssssssssss</p>
-                  <p>sadsssssssssssssssssssssss</p>
+
               </TabPane>
               <TabPane tabId="2">
 

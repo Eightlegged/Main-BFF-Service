@@ -37,13 +37,17 @@ class Meeting extends Component {
 
   render() {
     return (
-      <Container fluid={true} style={{height: "100%", overflow: "auto"}}>
-        <Row style={{height: "98%"}}>
-          <Col xs="12" md="4" >
-            <MeetingList doneMeetings={this.state.doneMeetings} todoMeetings={this.state.todoMeetings} />
-            <MeetingCreate/>
+      <Container fluid={true} style={{height: "100%"}}>
+        <Row>
+          <Col xs="12" md="6" >
+            <MeetingList doneMeetings={this.state.doneMeetings} />
           </Col>
-          <Col xs="12" md="8">
+          <Col xs="12" md="6" >
+            <MeetingList doneMeetings={this.state.todoMeetings} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
             <MeetingAnalysis/>
           </Col>
         </Row>

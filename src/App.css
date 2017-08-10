@@ -3,13 +3,11 @@
 }
 
 #PageContainer {
-  height: 80%;
-}
-
-#PagePadding {
-  height: 9%;
+  height: 100%;
 }
 
 #PageRouter {
-  height: 80%;
+  padding-top: 50px;
+  height: 100%;
+  overflow: auto;
 }

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Container, Row, Col, Nav, NavItem, NavLink } from 'reactstrap';
 import { loginCheck, loginEnd, logoutEnd } from './actions/Authentication';
 
 import HeaderContainer from './containers/HeaderContainer';
+import SideBar from './components/SideBar'
 import Footer from './components/footer/Footer'
 import Introduce from './components/Introduce';
 import LoginContainer from './containers/LoginContainer';
@@ -66,8 +68,12 @@ class App extends Component {
       <Router>
         <div id="App">
           <HeaderContainer status={this.props.status}/>
-          <div id="PageContainer">
-            <div id="PagePadding"/>
+          <Container fluid={true} style={{paddingLeft: "0px", paddingTop: "55px"}} id="PageContainer">
+            <Row style={{height: "100%"}}>
+            <Col xs="12" sm="12" md="2">
+              <SideBar/>
+            </Col>
+            <Col xs="12" sm="12" md="10">
             <div id="PageRouter">
               <Route exact path="/" component={Introduce}/>
               <Route path="/login" render={() => (
@@ -99,9 +105,9 @@ class App extends Component {
                 )
               )}/>
             </div>
-            <div id="PagePadding"/>
-          </div>  
-          <Footer />
+            </Col>
+            </Row>
+          </Container>
         </div>
       </Router>
     );

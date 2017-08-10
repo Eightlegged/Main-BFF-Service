@@ -35,14 +35,6 @@ class MeetingList extends Component {
               종료된 회의
             </NavLink>
           </NavItem>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: this.state.activeTab === 'to do' })}
-              onClick={() => { this.toggle('to do'); }}
-            >
-              시작 전 회의
-            </NavLink>
-          </NavItem>
         </Nav>
         <TabContent activeTab={this.state.activeTab} style={{height: "90%", overflow: "auto"}}>
           <TabPane tabId="done">
@@ -52,23 +44,6 @@ class MeetingList extends Component {
                 </thead>
                 <tbody>
                   {this.props.doneMeetings.map((data, i) => {
-                    return (
-                      <tr style={{textAlign : 'left'}} key={i}>
-                        <td><div>{data.date}</div><div>{data.name}</div></td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </Table>
-            </div>
-          </TabPane>
-          <TabPane tabId="to do" >
-            <div >
-              <Table bordered>
-                <thead>
-                </thead>
-                <tbody >
-                  {this.props.todoMeetings.map((data, i) => {
                     return (
                       <tr style={{textAlign : 'left'}} key={i}>
                         <td><div>{data.date}</div><div>{data.name}</div></td>
