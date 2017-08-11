@@ -25,6 +25,7 @@ $ npm start
 </code>
 
 이후 http://localhost:8001 에서 어플리케이션 테스트
+(로컬 앱 실행시 모든 기능이 완벽하게 제공되지 않음.)
 
 ###BFF 빌드 및 구동
 main-bff-service 디렉토리에서 다음 명령어 실행
@@ -33,8 +34,10 @@ main-bff-service 디렉토리에서 다음 명령어 실행
 $ npm run serverbff
 </code>
 
-이후 http://localhost:8000에서 테스트
+이후 http://localhost:3000에서 테스트
 
+###Bluemix app
+https://react-test-app.mybluemix.net/ 에서 PaaS 배포 확인 가능
 
 ### 기능
 > 메인(디폴트 서비스 소개 페이지)

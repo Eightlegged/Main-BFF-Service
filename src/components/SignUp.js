@@ -46,39 +46,54 @@ class SignUp extends Component {
 
   render() {
     return (
-      <Container fluid={true} style={{textAlign: 'center'}}>
-        <Row>
-        <Col md={{size: 4, offset: 4}}>
-          <div>
-            <h1> 회원가입 </h1>
-          </div>
-          <Form>
-            <FormGroup row>
-              <Label for="exampleEmail">Email</Label>
-              <Input type="email" name="email" onChange={this.handleChange} value={this.state.email} />
-            </FormGroup>
+      <div className="container-fluid">
 
-            <FormGroup row>
-              <Label for="examplePassword">비밀번호</Label>
-                <Input type="password" name="password" onChange={this.handleChange} value={this.state.password} />
-            </FormGroup>
+                <div className="row">
+                    <div className="col-lg-12">
+                        <h1 className="page-header">
+                            로그인 <small>2</small>
+                        </h1>
+                        <ol className="breadcrumb">
+                            <li className="active">
+                                <i className="fa fa-dashboard"></i> Dashboard
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div className="Row">
+                  <div className="col-md-4">
+                  </div>
+                  <div className="col-md-4">
+                    <Form>
+                      <FormGroup row>
+                        <Label for="exampleEmail">Email</Label>
+                        <Input type="email" name="email" onChange={this.handleChange} value={this.state.email} />
+                      </FormGroup>
 
-            <FormGroup row>
-              <Label for="exampleText">사용자 이름</Label>
-              <Input type="text" name="username" onChange={this.handleChange} value={this.state.username} />
-            </FormGroup>
+                      <FormGroup row>
+                        <Label for="examplePassword">비밀번호</Label>
+                          <Input type="password" name="password" onChange={this.handleChange} value={this.state.password} />
+                      </FormGroup>
+
+                      <FormGroup row>
+                        <Label for="exampleText">사용자 이름</Label>
+                        <Input type="text" name="username" onChange={this.handleChange} value={this.state.username} />
+                      </FormGroup>
 
 
-          <FormGroup>
-            <Col>
-              <Button onClick={this.handleSignUp}>Submit</Button>
-            </Col>
-          </FormGroup>
+                      <FormGroup>
+                        <Col>
+                          <Button onClick={this.handleSignUp}>Submit</Button>
+                        </Col>
+                      </FormGroup>
 
-        </Form>
-        </Col>
-        </Row>
-      </Container>
+                    </Form>
+                  </div>
+                  <div className="col-md-4">
+                  </div>
+                </div>
+      </div>
+
     );
   }
 

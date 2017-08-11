@@ -4,7 +4,7 @@ import api from './routes';
 
 const app = express();
 
-let port = 8000;
+let port = 3000;
 
 // SETUP MIDDLEWARE
 app.use(bodyParser.json());
@@ -17,6 +17,6 @@ app.use('/api', api);
 
 // TO BE IMPLEMENTED
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
     console.log('Express is listening on port', port);
 });

@@ -1,6 +1,4 @@
 ./.git
-./build
 ./node_modules
-./server/build
 ./.gitignore
 ./CREATE_REACT_APP_README.md
