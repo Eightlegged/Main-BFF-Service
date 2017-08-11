@@ -11,47 +11,27 @@ Smart Meeting Assistant 어플리케이션의 Single Page Application 기반의 
 ### 프로젝트 구조
 Express기반의 서버에 React.js로 구현한 프론트엔드 어플리케이션을 PaaS상에 배포
 
+### 의존성 설치
+
+<code>
+$ npm install
+</code>
+
 ### 로컬 리액트 앱 구동
 main-bff-service 디렉토리에서 다음 명령어 실행
-<pre><code>
-$ npm install
+
+<code>
 $ npm start
-</code></pre>
+</code>
 
 이후 http://localhost:8001 에서 어플리케이션 테스트
 
-### 서버 빌드
+###BFF 빌드 및 구동
 main-bff-service 디렉토리에서 다음 명령어 실행
 
-<pre><code>
-$ npm install
-$ npm run build
-</code></pre>
-
-main-bff-service/build에 빌드 파일 생성
-
-main-bff-service/server 디렉토리에서 다음 명령어 실행
-
-<pre><code>
-$ npm install
-$ npm run build
-</code></pre>
-
-main-bff-service/server/build에 빌드 파일 생성
-
-다음 명령어로 서버 실행
-<pre><code>
-$ npm start
-</code></pre>
-
-http://localhost:8000에서 서버구동
-
-###리액트 앱 빌드 및 서버 빌드 후 구동 자동화
-main-bff-service 디렉토리에서 다음 명령어 실행
-
-<pre><code>
-$ npm run serverstart
-</code></pre>
+<code>
+$ npm run serverbff
+</code>
 
 이후 http://localhost:8000에서 테스트
 
