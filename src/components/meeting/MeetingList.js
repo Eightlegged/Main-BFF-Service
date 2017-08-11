@@ -8,7 +8,6 @@ import classnames from 'classnames';
 class MeetingList extends Component {
   constructor(props) {
     super(props);
-    console.log(document.getElementById("PageContainer").style);
     this.toggle = this.toggle.bind(this);
     this.state = {
       activeTab: 'done'

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Container, Row, Col, Nav, NavItem, NavLink } from 'reactstrap';
 import { loginCheck, loginEnd, logoutEnd } from './actions/Authentication';
 
 import HeaderContainer from './containers/HeaderContainer';
@@ -13,8 +12,6 @@ import SignUpContainer from './containers/SignUpContainer';
 import Meeting from './components/meeting/Meeting'
 import SttTest from './components/SttTest'
 
-
-import './App.css';
 
 class App extends Component {
   constructor(props){
@@ -66,48 +63,39 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div id="App">
+        <div id="wrapper">
           <HeaderContainer status={this.props.status}/>
-          <Container fluid={true} style={{paddingLeft: "0px", paddingTop: "55px"}} id="PageContainer">
-            <Row style={{height: "100%"}}>
-            <Col xs="12" sm="12" md="2">
-              <SideBar/>
-            </Col>
-            <Col xs="12" sm="12" md="10">
-            <div id="PageRouter">
-              <Route exact path="/" component={Introduce}/>
-              <Route path="/login" render={() => (
-                this.state.isLoggedIn ? (
-                  <Redirect to="/"/>
-                ) : (
-                  <LoginContainer/>
-                )
-              )}/>
-              <Route path="/signup" render={() => (
+          <div id="page-wrapper">
+            <Route exact path="/" component={Introduce}/>
+            <Route path="/login" render={() => (
               this.state.isLoggedIn ? (
-                  <Redirect to="/"/>
-                ) : (
-                  <SignUpContainer/>
-                )
-              )}/>
-              <Route path="/meetinglist" render={() => (
-              this.state.isLoggedIn ? (
-                  <Meeting/>
-                ) : (
-                  <Redirect to="/login"/>
-                )
-              )}/>
-              <Route path="/SttTest" render={() => (
-              this.state.isLoggedIn ? (
-                  <SttTest/>
-                ) : (
-                  <Redirect to="/login"/>
-                )
-              )}/>
-            </div>
-            </Col>
-            </Row>
-          </Container>
+                <Redirect to="/"/>
+              ) : (
+                <LoginContainer/>
+              )
+            )}/>
+            <Route path="/signup" render={() => (
+            this.state.isLoggedIn ? (
+                <Redirect to="/"/>
+              ) : (
+                <SignUpContainer/>
+              )
+            )}/>
+            <Route path="/meetinglist" render={() => (
+            this.state.isLoggedIn ? (
+                <Meeting/>
+              ) : (
+                <Redirect to="/login"/>
+              )
+            )}/>
+            <Route path="/SttTest" render={() => (
+            this.state.isLoggedIn ? (
+                <SttTest/>
+              ) : (
+                <Redirect to="/login"/>
+              )
+            )}/>
+          </div>
         </div>
       </Router>
     );

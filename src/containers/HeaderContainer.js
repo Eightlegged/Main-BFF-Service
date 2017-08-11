@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import HeaderNavbar from '../components/header/HeaderNavbar';
+import Header from '../components/header/Header';
 import { connect } from 'react-redux';
 import { logoutRequest } from '../actions/Authentication';
 
@@ -13,7 +13,7 @@ class HeaderContainer extends Component {
   render() {
     return (
         <div>
-          <HeaderNavbar authentication={this.props.authentication} logoutRequest={this.props.logoutRequest} />
+          <Header authentication={this.props.authentication} logoutRequest={this.props.logoutRequest} />
         </div>
     );
   }
