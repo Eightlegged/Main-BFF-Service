@@ -1,0 +1,6 @@
+---
+applications:
+- name: react-test-app
+  command: npm run startbff
+  memory: 256MB
+  disk_quota: 256MB
