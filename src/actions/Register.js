@@ -16,7 +16,7 @@ export function signUpRequest(email, password, username) {
         // Inform Login API is starting
         dispatch(signUp());
 
-        return axios.post('api/register/signUp', { email, password, username })
+        return axios.post('http://localhost:3000/api/register/signUp', { email, password, username })
         .then((response) => {
             console.log(response);
             // SUCCEED

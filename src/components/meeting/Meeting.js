@@ -1,38 +1,16 @@
 import React, { Component } from 'react';
-import { Container, Row, Col } from 'reactstrap';
 
 import MeetingList from './MeetingList';
 import MeetingAnalysis from './MeetingAnalysis';
-import MeetingCreate from './MeetingCreate';
 
 class Meeting extends Component {
   constructor(props) {
-    let DoneMeetings;
-    let TodoMeetings;
-
-    DoneMeetings = [
-      {date : "2017-07-01", name : "ksd", etc: "...."},
-      {date : "2017-07-02", name : "hyj", etc: "...."},
-      {date : "2017-07-03", name : "asd", etc: "...."},
-      {date : "2017-07-04", name : "wer", etc: "...."}
-
-    ];
-
-    TodoMeetings = [
-      {date : "2017-08-09", name : "qwe", etc: "...."},
-      {date : "2017-08-10", name : "hbf", etc: "...."},
-      {date : "2017-08-11", name : "lui", etc: "...."},
-      {date : "2017-08-12", name : "mvc", etc: "...."}
-
-    ];
-
-
     super(props);
-    this.state = {
-      doneMeetings: DoneMeetings,
-      todoMeetings: TodoMeetings
-    };
+    console.log(this.props.meetingList);
+  }
 
+  componentDidUpdate(prevProps, prevState){
+    console.log(this.props.meetingList);
   }
 
   render() {
@@ -61,7 +39,7 @@ class Meeting extends Component {
                     </div>
                 </div>
 
-                <div className="row">
+                <div className="row" style={{maxHeight: "600px"}}>
                     <div className="col-lg-6 col-md-6">
                         <div className="panel panel-primary">
                             <div className="panel-heading">
@@ -75,13 +53,7 @@ class Meeting extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <ul className="list-group" id="DoneList">
-                              <li className="list-group-item">Cras justo odio</li>
-                              <li className="list-group-item">Dapibus ac facilisis in</li>
-                              <li className="list-group-item">Morbi leo risus</li>
-                              <li className="list-group-item">Porta ac consectetur ac</li>
-                              <li className="list-group-item">Vestibulum at eros</li>
-                            </ul>
+                            <MeetingList meetings={this.props.meetingList.endMeetings}/>
                         </div>
                     </div>
                     <div className="col-lg-6 col-md-6" >
@@ -97,13 +69,7 @@ class Meeting extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <ul className="list-group" id="DoingList">
-                              <li className="list-group-item">Cras justo odio</li>
-                              <li className="list-group-item">Dapibus ac facilisis in</li>
-                              <li className="list-group-item">Morbi leo risus</li>
-                              <li className="list-group-item">Porta ac consectetur ac</li>
-                              <li className="list-group-item">Vestibulum at eros</li>
-                            </ul>
+                            <MeetingList meetings={this.props.meetingList.waitMeetings}/>
                         </div>
                     </div>
 

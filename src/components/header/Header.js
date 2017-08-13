@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
+import TeamLogo from '../../img/TeamLogo.png';
+
+
 class Header extends Component{
   constructor(props) {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
+
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -41,7 +41,7 @@ class Header extends Component{
     if(this.props.authentication.status.isLoggedIn){
       return (
         <li className="dropdown">
-            <a href="#" className="dropdown-toggle" data-toggle="dropdown"><i className="fa fa-user"></i> John Smith <b className="caret"></b></a>
+            <a href="#" className="dropdown-toggle" data-toggle="dropdown"><i className="fa fa-user"></i>{this.props.authentication.status.currentUser}<b className="caret"></b></a>
             <ul className="dropdown-menu">
                 <li>
                     <a href="#"><i className="fa fa-fw fa-user"></i> Profile</a>
@@ -63,11 +63,6 @@ class Header extends Component{
     }
   }
 
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-  }
 
   handleLogout() {
       let loginData = {
@@ -191,10 +186,12 @@ class Header extends Component{
                       <Link to="/meetinglist"><i className="fa fa-fw fa-table"></i> 회의 보기</Link>
                   </li>
                   <li>
-                      <a href=""><i className="fa fa-fw fa-edit"></i> 회의 생성</a>
+                      <Link to="/create"><i className="fa fa-fw fa-edit"></i> 회의 생성</Link>
                   </li>
                   <li>
-                      <a href=""><i className="fa fa-fw fa-dashboard"></i> 대시보드</a>
+                      <Link to="/SttTest"><i className="fa fa-fw fa-dashboard"></i> 대시보드</Link>
+                  </li>
+                  <li style={{position: "absolute", bottom: "10px"}}>
                   </li>
               </ul>
           </div>

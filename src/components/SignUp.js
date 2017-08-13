@@ -51,7 +51,7 @@ class SignUp extends Component {
                 <div className="row">
                     <div className="col-lg-12">
                         <h1 className="page-header">
-                            로그인 <small>2</small>
+                            회원 가입 <small>2</small>
                         </h1>
                         <ol className="breadcrumb">
                             <li className="active">

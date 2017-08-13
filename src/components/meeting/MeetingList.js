@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 //
-import { Table } from 'reactstrap';
-import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
-import classnames from 'classnames';
 
 
 class MeetingList extends Component {
@@ -24,37 +21,15 @@ class MeetingList extends Component {
 
   render() {
     return (
-      <div style={{height: "90%"}}>
-        <Nav tabs>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: this.state.activeTab === 'done' })}
-              onClick={() => { this.toggle('done'); }}
-            >
-              종료된 회의
-            </NavLink>
-          </NavItem>
-        </Nav>
-        <TabContent activeTab={this.state.activeTab} style={{height: "90%", overflow: "auto"}}>
-          <TabPane tabId="done">
-            <div >
-              <Table bordered>
-                <thead>
-                </thead>
-                <tbody>
-                  {this.props.doneMeetings.map((data, i) => {
-                    return (
-                      <tr style={{textAlign : 'left'}} key={i}>
-                        <td><div>{data.date}</div><div>{data.name}</div></td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </Table>
-            </div>
-          </TabPane>
-        </TabContent>
-      </div>
+          <ul className="list-group" id="DoneList" style={{overflow: "auto"}}>
+          {this.props.meetings.map((data, i) => {
+            return (
+              <li className="list-group-item" key={i}>
+                <div>{data.title}</div><div>{data.date}</div><div className="text-right"> <button className="btn-info btn btn-xs">상세보기</button></div>
+              </li>
+            );
+          })}
+          </ul>
     );
   }
 }

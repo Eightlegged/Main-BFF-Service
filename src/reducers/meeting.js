@@ -1,0 +1,129 @@
+import * as types from '../actions/ActionTypes';
+import update from 'react-addons-update';
+
+const initialState = {
+    createMeeting: {
+        status: 'END'
+    },
+    meetingStatus: {
+      status: 'NONE'
+    },
+    meetingListLoadStatus: {
+      status: 'INIT'
+    },
+    meetingList: {
+      endMeetings: [],
+      waitMeetings: []
+    },
+    meetingLoadStatus: {
+      status: 'END'
+    },
+    currentMeeting: {
+      data: {}
+    }
+};
+
+export default function register(state, action) {
+    if(typeof state === "undefined")
+        state = initialState;
+
+    switch(action.type) {
+        /* CREATE_MEETING */
+        case types.CREATE_MEETING:
+            return update(state, {
+                createMeeting: {
+                    status: { $set: 'WAITING' }
+                }
+            });
+
+        case types.CREATE_MEETING_SUCCESS:
+            return update(state, {
+                createMeeting: {
+                    status: { $set: 'SUCCESS' }
+                }
+            });
+        case types.CREATE_MEETING_END:
+            return update(state, {
+                createMeeting: {
+                    status: { $set: 'END'}
+                }
+            })
+        case types.CREATE_MEETING_FAILURE:
+            return update(state, {
+                createMeeting: {
+                    status: { $set: 'FAILURE' }
+                }
+            });
+        /* MEETING_STATUS_CHANGE */
+        case types.MEETING_STATUS_END:
+            return update(state, {
+                meetingStatus: {
+                    status: { $set: 'DONE' }
+                }
+            });
+        case types.MEETING_STATUS_WAIT:
+            return update(state, {
+                meetingStatus: {
+                    status: { $set: 'WAIT' }
+                }
+        });
+        case types.MEETING_LIST_LOAD:
+            return update(state, {
+                meetingListLoadStatus: {
+                    status: { $set: 'WAITING' }
+                }
+        });
+        case types.MEETING_LIST_LOAD_SUCCESS:
+            return update(state, {
+                meetingListLoadStatus: {
+                    status: { $set: 'SUCCESS' }
+                },
+                meetingList: {
+                  endMeetings: { $set: action.end  },
+                  waitMeetings: { $set: action.wait }
+                }
+        });
+        case types.MEETING_LIST_LOAD_FAILURE:
+            return update(state, {
+                meetingListLoadStatus: {
+                    status: { $set: 'FAILURE' }
+                }
+        });
+        case types.MEETING_LIST_LOAD_END:
+            return update(state, {
+                meetingListLoadStatus: {
+                    status: { $set: 'END' }
+                }
+        });
+        case types.MEETING_LOAD:
+            return update(state, {
+                meetingLoadStatus: {
+                    status: { $set: 'WAITING' }
+                }
+        });
+        case types.MEETING_LOAD_SUCCESS:
+            return update(state, {
+                meetingLoadStatus: {
+                    status: { $set: 'SUCCESS' }
+                },
+                currentMeeting: {
+                  data: { $set: action.data  }
+                }
+        });
+        case types.MEETING_LOAD_FAILURE:
+            return update(state, {
+                meetingLoadStatus: {
+                    status: { $set: 'FAILURE' }
+                }
+        });
+        case types.MEETING_LOAD_END:
+            return update(state, {
+                meetingLoadStatus: {
+                    status: { $set: 'END' }
+                }
+        });
+
+        default:
+            return state;
+    }
+}

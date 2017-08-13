@@ -9,8 +9,9 @@ import Footer from './components/footer/Footer'
 import Introduce from './components/Introduce';
 import LoginContainer from './containers/LoginContainer';
 import SignUpContainer from './containers/SignUpContainer';
-import Meeting from './components/meeting/Meeting'
-import SttTest from './components/SttTest'
+import CreateMeetingContainer from './containers/CreateMeetingContainer';
+import MeetingContainer from './containers/MeetingContainer';
+import SttTest from './components/SttTest';
 
 
 class App extends Component {
@@ -83,7 +84,14 @@ class App extends Component {
             )}/>
             <Route path="/meetinglist" render={() => (
             this.state.isLoggedIn ? (
-                <Meeting/>
+                <MeetingContainer/>
+              ) : (
+                <Redirect to="/login"/>
+              )
+            )}/>
+            <Route path="/create" render={() => (
+            this.state.isLoggedIn ? (
+                <CreateMeetingContainer/>
               ) : (
                 <Redirect to="/login"/>
               )

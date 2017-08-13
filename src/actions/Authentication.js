@@ -23,7 +23,7 @@ export function loginRequest(email, password) {
         // Inform Login API is starting
         dispatch(login());
 
-        return axios.post('/api/authentication/login', { email, password })
+        return axios.post('http://localhost:3000/api/authentication/login', { email, password })
         .then((response) => {
             console.log(response);
             // SUCCEED
