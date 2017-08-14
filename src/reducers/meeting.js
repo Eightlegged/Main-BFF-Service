@@ -23,7 +23,7 @@ const initialState = {
     }
 };
 
-export default function register(state, action) {
+export default function meeting(state, action) {
     if(typeof state === "undefined")
         state = initialState;
 
@@ -58,7 +58,7 @@ export default function register(state, action) {
         case types.MEETING_STATUS_END:
             return update(state, {
                 meetingStatus: {
-                    status: { $set: 'DONE' }
+                    status: { $set: 'END' }
                 }
             });
         case types.MEETING_STATUS_WAIT:

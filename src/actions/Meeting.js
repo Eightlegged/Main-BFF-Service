@@ -8,7 +8,11 @@ import {
   MEETING_LIST_LOAD,
   MEETING_LIST_LOAD_SUCCESS,
   MEETING_LIST_LOAD_FAILURE,
-  MEETING_LIST_LOAD_END
+  MEETING_LIST_LOAD_END,
+  MEETING_LOAD,
+  MEETING_LOAD_SUCCESS,
+  MEETING_LOAD_FAILURE,
+  MEETING_LOAD_END
 } from './ActionTypes';
 import axios from 'axios';
 
@@ -127,15 +131,20 @@ export function meetingListLoadEnd() {
 
 /* MEETING_LOAD */
 
-export function meetingLoadRequest(id) {
+export function meetingLoadRequest(id, status) {
     return (dispatch) => {
         // Inform Login API is starting
         dispatch(meetingLoad());
-        let url = 'http://localhost:3000/api/meeting/' + id.toString();
+        let url = 'http://localhost:3000/api/meeting/info/' + id.toString();
         return axios.get(url)
         .then((response) => {
           console.log(response);
-          dispatch(meetingLoadSuccess(response));
+          dispatch(meetingLoadSuccess(response.data));
+          if(status == 'END'){
+            dispatch(meetingStatusEnd());
+          }else{
+            dispatch(meetingStatusWait());
+          }
         }).catch((error) => {
           dispatch(meetingLoadFailure());
         });
@@ -144,25 +153,25 @@ export function meetingLoadRequest(id) {
 
 export function meetingLoad() {
   return {
-      type: MEETING_LIST_LOAD
+      type: MEETING_LOAD
   }
 }
 
 export function meetingLoadSuccess(data) {
   return {
-      type: MEETING_LIST_LOAD_SUCCESS,
+      type: MEETING_LOAD_SUCCESS,
       data
   }
 }
 
 export function meetingLoadFailure() {
   return {
-      type: MEETING_LIST_LOAD_FAILURE
+      type: MEETING_LOAD_FAILURE
   }
 }
 
 export function meetingLoadEnd() {
   return {
-      type: MEETING_LIST_LOAD_END
+      type: MEETING_LOAD_END
   }
 }

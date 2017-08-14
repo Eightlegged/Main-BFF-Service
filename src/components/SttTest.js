@@ -44,6 +44,7 @@ class SttTest extends Component{
         return (
 
         <div style={{textAlign: 'center'}}>
+            <h3>회의 시작</h3>
             <Row>
                 <Col />
                 <Col>

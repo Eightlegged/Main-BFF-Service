@@ -19,7 +19,7 @@ class Header extends Component{
       return(
         <li>
           <Link to="/login">
-            로그인
+            <i className="fa fa-fw fa-user-circle-o"></i>로그인
           </Link>
         </li>
       );
@@ -30,7 +30,7 @@ class Header extends Component{
       return(
         <li>
           <Link to="/signup">
-            회원가입
+            <i className="fa fa-fw fa-user-plus"></i>회원가입
           </Link>
         </li>
       );

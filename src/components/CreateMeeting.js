@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col , Row , Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
+import {  Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { withRouter } from 'react-router'
 
 class CreateMeeting extends React.Component {
@@ -107,9 +107,9 @@ class CreateMeeting extends React.Component {
                           </FormGroup>
 
                           <FormGroup>
-                            <Col>
+                            <div className="col">
                               <Button onClick={this.handleCreateMeeting}>Submit</Button>
-                            </Col>
+                            </div>
                           </FormGroup>
 
                         </Form>

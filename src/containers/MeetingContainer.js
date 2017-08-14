@@ -22,7 +22,7 @@ class CreateMeetingContainer extends Component {
   render() {
     return (
       <div>
-        <Meeting meetingstatus={this.props.meetingStatus}
+        <Meeting meetingStatus={this.props.meetingStatus}
          meetingListStatus={this.props.meetingListStatus}
          meetingList={this.props.meetingList}
          meetingListLoadStatus={this.props.meetingListLoadStatus}
@@ -39,7 +39,7 @@ class CreateMeetingContainer extends Component {
 const mapStateToProps = (state) => {
     return {
         userid: state.authentication.status.currentUser,
-        meetingstatus: state.meeting.meetingStatus,
+        meetingStatus: state.meeting.meetingStatus.status,
         meetingListLoadStatus: state.meeting.meetingListLoadStatus,
         meetingList: state.meeting.meetingList,
         meetingLoadStatus: state.meeting.meetingLoadStatus,
@@ -49,11 +49,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        meetingListLoadRequest: (title, content, date, userList, startTime, comment, partName) => {
-            return dispatch(meetingListLoadRequest(title, content, date, userList, startTime, comment, partName));
+        meetingListLoadRequest: (id) => {
+            return dispatch(meetingListLoadRequest(id));
         },
-        meetingLoadRequest: () => {
-            return dispatch(meetingLoadRequest());
+        meetingLoadRequest: (id, status) => {
+            return dispatch(meetingLoadRequest(id, status));
         }
     };
 };

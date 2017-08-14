@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col , Row , Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { withRouter } from 'react-router'
 
 
@@ -82,9 +82,9 @@ class SignUp extends Component {
 
 
                       <FormGroup>
-                        <Col>
+                        <div className="col">
                           <Button onClick={this.handleSignUp}>Submit</Button>
-                        </Col>
+                        </div>
                       </FormGroup>
 
                     </Form>

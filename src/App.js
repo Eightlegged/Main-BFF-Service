@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { loginCheck, loginEnd, logoutEnd } from './actions/Authentication';
 
 import HeaderContainer from './containers/HeaderContainer';
-import SideBar from './components/SideBar'
-import Footer from './components/footer/Footer'
 import Introduce from './components/Introduce';
 import LoginContainer from './containers/LoginContainer';
 import SignUpContainer from './containers/SignUpContainer';
