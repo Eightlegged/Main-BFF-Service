@@ -31,13 +31,16 @@ class CreateMeeting extends React.Component {
             let user = this.state.user;
             let startTime = this.state.startTime;
             let comment = this.state.comment;
-            let partName = "default";
+            let partName = "QA";
 
             let splitArray = user.split(", ");
             let userList = [];
+            console.log(user);
+            console.log(splitArray);
             for(var i in splitArray){
+              console.log(splitArray[i]);
               let obj = {
-                "userName": i
+                "userName": splitArray[i]
               }
               userList.push(obj);
             }
@@ -106,10 +109,8 @@ class CreateMeeting extends React.Component {
                             <Input type="text" name="comment" onChange={this.handleChange} value={this.state.comment} />
                           </FormGroup>
 
-                          <FormGroup>
-                            <div className="col">
+                          <FormGroup check row>
                               <Button onClick={this.handleCreateMeeting}>Submit</Button>
-                            </div>
                           </FormGroup>
 
                         </Form>

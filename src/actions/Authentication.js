@@ -20,14 +20,18 @@ import axios from 'axios';
 /* LOGIN */
 export function loginRequest(email, password) {
     return (dispatch) => {
-        // Inform Login API is starting
+        // Inform Login http://smabackend.mybluemix.net is starting
         dispatch(login());
 
-        return axios.post('http://localhost:3000/api/authentication/login', { email, password })
+        return axios.post('http://smabackend.mybluemix.net/user/login', { email, password })
         .then((response) => {
             console.log(response);
             // SUCCEED
-            dispatch(loginSuccess(email));
+            if(response.data.result=="SUCCESS"){
+              dispatch(loginSuccess(email));
+            }else{
+              dispatch(loginFailure());
+            }
         }).catch((error) => {
             // FAILED
             dispatch(loginFailure());
@@ -64,7 +68,7 @@ export function loginEnd() {
 /* LOGOUT */
 export function logoutRequest() {
     return (dispatch) => {
-        // Inform Login API is starting
+        // Inform Login http://smabackend.mybluemix.net is starting
         dispatch(logout());
 
         return dispatch(logoutSuccess());

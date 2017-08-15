@@ -11,16 +11,21 @@ import axios from 'axios';
 ==============================================================================*/
 
 /* SIGNUP */
-export function signUpRequest(email, password, username) {
+export function signUpRequest(email, password, userName) {
     return (dispatch) => {
         // Inform Login API is starting
         dispatch(signUp());
 
-        return axios.post('http://localhost:3000/api/register/signUp', { email, password, username })
+        return axios.post('http://smabackend.mybluemix.net/user/add', { email, password, userName })
         .then((response) => {
             console.log(response);
             // SUCCEED
-            dispatch(signUpSuccess());
+            if(response.data.result=="SUCCESS"){
+              dispatch(signUpSuccess());
+            }else{
+              dispatch(signUpFailure());
+            }
+
         }).catch((error) => {
             // FAILED
             dispatch(signUpFailure());

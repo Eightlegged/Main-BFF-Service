@@ -22,7 +22,7 @@ class Meeting extends Component {
       if(this.props.meetingStatus == 'END'){
         return(<MeetingAnalysis data={this.props.currentMeeting.data}/>);
       }else{
-        return(<SttTest/>);
+        return(<SttTest data={this.props.currentMeeting.data}/>);
 
       }
 

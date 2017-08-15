@@ -1,12 +1,10 @@
 import express from 'express';
-import authentication from './authentication';
-import register from './register';
+import user from './user';
 import meeting from './meeting';
 
 const router = express.Router();
-router.use('/authentication', authentication);
 
-router.use('/register', register);
+router.use('/user', user);
 
 router.use('/meeting', meeting);
 

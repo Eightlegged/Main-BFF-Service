@@ -81,10 +81,8 @@ class SignUp extends Component {
                       </FormGroup>
 
 
-                      <FormGroup>
-                        <div className="col">
+                      <FormGroup check row>
                           <Button onClick={this.handleSignUp}>Submit</Button>
-                        </div>
                       </FormGroup>
 
                     </Form>

@@ -26,11 +26,17 @@ export function createMeetingRequest(title, content, date, userList, startTime, 
         // Inform Login API is starting
         dispatch(createMeeting());
 
-        return axios.post('http://localhost:3000/api/register/signUp', { title, content, date, userList, startTime, comment, partName })
+        return axios.post('http://smabackend.mybluemix.net/meeting/add', { title, content, date, userList, startTime, comment, partName })
         .then((response) => {
             console.log(response);
             // SUCCEED
-            dispatch(createMeetingSuccess());
+            if(response.data.result=="SUCCESS"){
+              dispatch(createMeetingSuccess());
+            }else{
+              dispatch(createMeetingFailure());
+            }
+
+
         }).catch((error) => {
             // FAILED
             dispatch(createMeetingFailure());
@@ -82,12 +88,12 @@ export function meetingListLoadRequest(id) {
   return (dispatch) => {
       // Inform Login API is starting
       dispatch(meetingLoad());
-      let url = 'http://localhost:3000/api/meeting/end/' + id;
+      let url = 'http://smabackend.mybluemix.net/user/end/' + id;
       return axios.get(url)
       .then((response) => {
         let end = response.data;
         console.log(response);
-        url = 'http://localhost:3000/api/meeting/wait/' + id;
+        url = 'http://smabackend.mybluemix.net/user/wait/' + id;
         return axios.get(url)
         .then((res) => {
           let wait = res.data;
@@ -135,7 +141,7 @@ export function meetingLoadRequest(id, status) {
     return (dispatch) => {
         // Inform Login API is starting
         dispatch(meetingLoad());
-        let url = 'http://localhost:3000/api/meeting/info/' + id.toString();
+        let url = 'http://smabackend.mybluemix.net/meeting/info/' + id.toString();
         return axios.get(url)
         .then((response) => {
           console.log(response);

@@ -1,6 +1,7 @@
 ---
 applications:
-- name: react-test-app
+- name: sma-mainbff-app
   command: npm run serverstart
   memory: 256MB
   disk_quota: 256MB
+  buildpack: https://github.com/cloudfoundry/nodejs-buildpack.git
