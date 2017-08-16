@@ -69,7 +69,9 @@ class Meeting extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <MeetingList status={'END'} meetingLoadRequest={this.props.meetingLoadRequest} meetings={this.props.meetingList.endMeetings}/>
+                            <div style={{ overflowY: "auto", maxHeight: "350px"}}>
+                              <MeetingList status={'END'} meetingLoadRequest={this.props.meetingLoadRequest} meetings={this.props.meetingList.endMeetings}/>
+                            </div>
                         </div>
                     </div>
                     <div className="col-lg-6 col-md-6" >
@@ -84,7 +86,9 @@ class Meeting extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <MeetingList status={'WAIT'} meetingLoadRequest={this.props.meetingLoadRequest} meetings={this.props.meetingList.waitMeetings}/>
+                            <div style={{ overflowY: "auto", maxHeight: "350px"}}>
+                              <MeetingList status={'WAIT'} meetingLoadRequest={this.props.meetingLoadRequest} meetings={this.props.meetingList.waitMeetings}/>
+                            </div>
                         </div>
                     </div>
                 </div>

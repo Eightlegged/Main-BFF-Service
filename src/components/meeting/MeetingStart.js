@@ -25,6 +25,8 @@ class MeetingStart extends Component{
     constructor(props){
       super(props);
 
+
+      console.log('page created');
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -34,9 +36,10 @@ class MeetingStart extends Component{
     }
 
     handleSubmit() {
+      console.log('stop');
       this.props.stopListening();
 
-      let id;
+      let id = this.props.data.id;
       let data = this.state.value;
 
       this.props.onMeetingSave(id, data).then(
@@ -50,6 +53,11 @@ class MeetingStart extends Component{
           }
       );
 
+    }
+
+    componentWillUnmount(){
+      console.log('Unmount');
+      this.props.stopListening();
     }
 
     render() {
@@ -105,7 +113,7 @@ class MeetingStart extends Component{
                       </Form>
                       <div style={{textAlign: "center"}}>
                         <Button color="success" onClick={this.props.startListening}>시작</Button>{' '}
-                        <Button color="warning" onClick={this.props.handleSubmit}>종료</Button>
+                        <Button color="warning" onClick={this.handleSubmit}>종료</Button>
                       </div>
                     </div>
                 </div>

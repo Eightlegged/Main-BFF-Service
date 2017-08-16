@@ -32,6 +32,52 @@ class MeetingAnalysis extends Component {
 	}
 
   renderKeywordTable() {
+    var data = [
+      {keyword: "DT", keywordnum: 15},
+      {keyword: "디지털", keywordnum: 13},
+      {keyword: "트랜스포메이션", keywordnum: 12},
+      {keyword: "기업", keywordnum: 10},
+      {keyword: "가치", keywordnum: 9},
+      {keyword: "SK", keywordnum: 8},
+      {keyword: "Abril", keywordnum: 7},
+      {keyword: "CloudZ", keywordnum: 6},
+      {keyword: "클라우드", keywordnum: 5}
+    ];
+
+		$('#keywordtable > tbody >tr').remove();
+		for (var i = 0; i < data.length; i++){
+      $('#keywordtable > tbody').append(
+				'<tr><td>' + (i + 1) + '</td>' + '<td>'
+				+ data[i].keyword + '</td><td>'
+				+ data[i].keywordnum + '</td></tr>');
+    }
+  }
+
+  renderStructedPaper() {
+        var text = '스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중 스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중. 스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중. 첫째로 치한 방지, 둘째로 여성, 초등학생 및 미취학 아동, 신체 부자유자와 보호자의 안심 이용을 목적으로 여성 전용차량을 도입하였습니다. 자세한 사항은 「지하철 승차 시에 고려해야 할 점」 페이지를 참조하십시오. 여러분의 이해와 협조에 감사드립니다. 예를 들어 다음과 같은 글을 쓴다면 이렇게 ex)가 앞에 붙어서 나오는 놀라운 일이 벌어집니다. 구조화 기능은 예시를 계속 추가해 주어야 더욱 자세하게 작동합니다.'
+
+				$('#textpaper >p ').remove();
+        text = text.replace(/다. /gi, "다.<br>");
+        text = text.replace(/오. /gi, "오.<br>");
+        text = text.replace(/요. /gi, "요.<br>");
+				text = text.replace(/1./gi, "<br><br>1.");
+				text = text.replace(/2./gi, "<br><br>2.");
+				text = text.replace(/3./gi, "<br><br>3.");
+				text = text.replace(/4./gi, "<br><br>4.");
+				text = text.replace(/첫번째/gi, "<br><br>1.");
+				text = text.replace(/두번째/gi, "<br><br>2.");
+				text = text.replace(/세번째/gi, "<br><br>3.");
+				text = text.replace(/네번째/gi, "<br><br>4.");
+        text = text.replace(/첫째로/gi, "<br><br>1.");
+        text = text.replace(/둘째로/gi, "<br><br>2.");
+        text = text.replace(/첫번째로/gi, "<br><br>1.");
+        text = text.replace(/두번째로/gi, "<br><br>2.");
+				text = text.replace(/예를 들어/gi, "<br><br>ex)");
+				text = text.replace(/예로/gi, "<br><br>ex)");
+				$('#textpaper').append('<p>' + text + '</p>');
+	}
+
+  renderKeywordPaper() {
         var data = [
         '기업','운영','기존','관리','방식','탈피','디지털','기술','가미','트랜스','트랜스포메이션','포메이션','기업규모','규모','모든','비즈니스','필요','물류','금융','의료','의료서비스','서비스','등등',
         '다양','산업','산업군','군','요구','수','고객','직원','우수','경험','제공','혁신적','프로세스','사용','속도','진화','오늘날','환경','솔루션','이것','세계적','기업간의','간의','경쟁','방법',
@@ -43,14 +89,12 @@ class MeetingAnalysis extends Component {
       ];
 
 				$('#textpaper1 >p ').remove();
-				var str="<p>";
+				var str='<p style="word-break: option;">';
 				var j=1;
 				for(var i=0;i<data.length;i++){
 
-					if(i==20*j){
-
-						str+=data[i]+"<br>";
-						j++;
+					if(i==data.length-1){
+						str+=data[i]
 					}else{
 						str+=data[i]+", ";
 					}
@@ -61,10 +105,14 @@ class MeetingAnalysis extends Component {
 
   componentDidMount() {
     this.renderKeywordTable();
+    this.renderKeywordPaper();
+    this.renderStructedPaper();
   }
 
   componentDidUpdate(prevProps, prevState){
     this.renderKeywordTable();
+    this.renderKeywordPaper();
+    this.renderStructedPaper();
   }
 
   render(){
@@ -116,10 +164,29 @@ class MeetingAnalysis extends Component {
         </div>
       </div>
 
+
       <div className="row">
-          <div className="col-lg-12">
-              <h3>구조화 문서</h3>
-          </div>
+        <div className="col-lg-12 col-md-12">
+            <h3>구조화 문서</h3>
+            <div className="panel panel-default">
+              <div className="panel-body" style={{ overflowY: "auto", maxHeight: "600px"}}>
+                  <div id="textpaper"></div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-lg-12 col-md-12">
+            <h3>세부 키워드</h3>
+            <div className="panel panel-default">
+              <div className="panel-body" style={{ overflowY: "auto", maxHeight: "435px"}}>
+                <div className="table-responsive">
+                  <div id="textpaper1"></div>
+                </div>
+              </div>
+            </div>
+        </div>
       </div>
 
       <div className="row">
@@ -136,14 +203,30 @@ class MeetingAnalysis extends Component {
           </div>
         </div>
         <div className="col-lg-6 col-md-6">
-            <h3>세부 키워드</h3>
-            <div className="panel panel-default">
-              <div className="panel-body" style={{ overflowY: "auto", height: "435px"}}>
-                <div className="table-responsive">
-                  <div id="textpaper1"></div>
-                </div>
+          <h3>
+            키워드 빈도수 표
+          </h3>
+          <div className="panel panel-default">
+            <div className="panel-body"
+              style={{overflowY: "scroll", height: "435px"}}>
+              <div className="table-responsive">
+                <table className="table table-bordered table-hover table-striped"
+                  id="keywordtable">
+                  <thead>
+                    <tr>
+                      <th>Order #</th>
+                      <th>키워드</th>
+                      <th>키워드 수</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                  </tbody>
+                </table>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
