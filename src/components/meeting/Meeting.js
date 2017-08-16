@@ -8,6 +8,8 @@ import MeetingStart from './MeetingStart';
 class Meeting extends Component {
   constructor(props) {
     super(props);
+    this.props.meetingStatusNone();
+    this.handleMeetingSave = this.handleMeetingSave.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -16,13 +18,26 @@ class Meeting extends Component {
     console.log(this.props.currentMeeting);
   }
 
+  handleMeetingSave(id, data, partName) {
+      return this.props.meetingSaveRequest(id, data, partName).then(() => {
+        if(true) {
+          this.props.meetingStatusNone();
+          return true;
+        } else {
+          console.log('meeting send fail');
+          return false;
+        }
+      }
+    );
+  }
+
   renderMeetingInfo() {
     console.log(this.props.meetingStatus);
     if(this.props.meetingStatus != 'NONE'){
       if(this.props.meetingStatus == 'END'){
         return(<MeetingAnalysis data={this.props.currentMeeting.data}/>);
       }else{
-        return(<MeetingStart onMeetingSave={this.props.meetingSaveRequest} data={this.props.currentMeeting.data}/>);
+        return(<MeetingStart onMeetingSave={this.handleMeetingSave} data={this.props.currentMeeting.data} />);
 
       }
 

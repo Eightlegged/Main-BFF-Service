@@ -44,7 +44,23 @@ export default function meeting(state, action) {
                 createMeeting: {
                     status: { $set: 'SUCCESS' }
                 }
-            });
+        });
+        case types.MEETING_STATUS_NONE:
+            return update(state, {
+                meetingStatus: {
+                    status: { $set: 'NONE'}
+                },
+                currentMeeting: {
+                    data: { $set: {} }
+                },
+                meetingListLoadStatus: {
+                    status: { $set: 'INIT' }
+                },
+                meetingList: {
+                  endMeetings: { $set: [] },
+                  waitMeetings: { $set: [] }
+                }
+            })
         case types.CREATE_MEETING_END:
             return update(state, {
                 createMeeting: {

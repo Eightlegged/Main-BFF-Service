@@ -1,6 +1,8 @@
 import React, { PropTypes ,Component } from 'react';
 import {ButtonGroup,Button,Form,FormGroup,Label,Input,Col,Row} from 'reactstrap';
-import SpeechRecognition from 'react-speech-recognition'
+import SpeechRecognition from 'react-speech-recognition';
+import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router'
 
 const propTypes = {
   // Props injected by SpeechRecognition
@@ -30,20 +32,27 @@ class MeetingStart extends Component{
       console.log('page created');
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+
+      console.log("바뀐거 확인222");
     }
 
     handleChange(event) {
+
         this.setState({value: event.target.value});
+
     }
 
     handleSubmit() {
       console.log('stop');
+      let data = this.props.transcript;
+      console.log(data);
       this.props.stopListening();
 
       let id = this.props.data.id;
-      let data = this.state.value;
+      let partName = this.props.data.partName;
 
-      this.props.onMeetingSave(id, data).then(
+
+      this.props.onMeetingSave(id, data, partName).then(
           (success) => {
               if(!success) {
                   alert('회의 생성 실패');
@@ -110,7 +119,7 @@ class MeetingStart extends Component{
                           <FormGroup>
                           <Label>인식 결과</Label>
                           <Input type="textarea" name="text" id="result_text" style={{resize: "none", height: 150}}
-                                 value={this.props.finalTranscript} onChange={this.handleChange} />
+                                 value={this.props.transcript} onChange={this.handleChange} />
                           </FormGroup>
                       </Form>
                       <div style={{textAlign: "center"}}>
@@ -126,4 +135,4 @@ class MeetingStart extends Component{
 
 MeetingStart.propTypes = propTypes
 
-export default SpeechRecognition(options)(MeetingStart)
+export default SpeechRecognition(options)(withRouter(MeetingStart))

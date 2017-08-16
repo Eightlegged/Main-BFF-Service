@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Meeting from '../components/meeting/Meeting';
 import { connect } from 'react-redux';
-import { meetingListLoadRequest, meetingLoadRequest, meetingSaveRequest  } from '../actions/Meeting';
+import { meetingListLoadRequest, meetingLoadRequest, meetingSaveRequest, meetingStatusNone  } from '../actions/Meeting';
 
 class CreateMeetingContainer extends Component {
   constructor(props){
@@ -19,11 +19,18 @@ class CreateMeetingContainer extends Component {
     }
   }
 
+  componentWillUnmount(){
+    this.props.meetingStatusNone();
+  }
+
+  componentDidUpdate(prevProps, prevState){
+  }
+
   render() {
     return (
       <div>
         <Meeting meetingStatus={this.props.meetingStatus}
-         meetingListStatus={this.props.meetingListStatus}
+         meetingStatus={this.props.meetingStatus}
          meetingList={this.props.meetingList}
          meetingListLoadStatus={this.props.meetingListLoadStatus}
          currentMeeting={this.props.currentMeeting}
@@ -31,6 +38,7 @@ class CreateMeetingContainer extends Component {
          meetingListLoadRequest={this.props.meetingListLoadRequest}
          meetingLoadRequest={this.props.meetingLoadRequest}
          meetingSaveRequest={this.props.meetingSaveRequest}
+         meetingStatusNone={this.props.meetingStatusNone}
          />
       </div>
     );
@@ -40,7 +48,7 @@ class CreateMeetingContainer extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        userid: state.authentication.status.currentUser,
+        userid: state.authentication.status.user_id,
         meetingStatus: state.meeting.meetingStatus.status,
         meetingListLoadStatus: state.meeting.meetingListLoadStatus,
         meetingList: state.meeting.meetingList,
@@ -58,8 +66,11 @@ const mapDispatchToProps = (dispatch) => {
         meetingLoadRequest: (id, status) => {
             return dispatch(meetingLoadRequest(id, status));
         },
-        meetingSaveRequest: (id, data) => {
-            return dispatch(meetingSaveRequest(id, data));
+        meetingSaveRequest: (id, data, partName) => {
+            return dispatch(meetingSaveRequest(id, data, partName));
+        },
+        meetingStatusNone: () => {
+            return dispatch(meetingStatusNone());
         }
     };
 };

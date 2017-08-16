@@ -11,6 +11,7 @@ const initialState = {
     status: {
         isLoggedIn: false,
         currentUser: '',
+        user_id: null
     }
 };
 
@@ -34,7 +35,8 @@ export default function authentication(state, action) {
                 },
                 status: {
                     isLoggedIn: { $set: true },
-                    currentUser: { $set: action.email }
+                    currentUser: { $set: action.email },
+                    user_id: { $set: action.user_id }
                 }
             });
         case types.AUTH_LOGIN_END:
@@ -84,7 +86,8 @@ export default function authentication(state, action) {
                 },
                 status: {
                     isLoggedIn: { $set: action.isLoggedIn },
-                    currentUser: { $set: action.email }
+                    currentUser: { $set: action.email },
+                    user_id: { $set: action.user_id }
                 }
             });
         default:

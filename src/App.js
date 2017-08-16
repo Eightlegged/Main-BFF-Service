@@ -35,7 +35,7 @@ class App extends Component {
     if(!loginData.isLoggedIn) {
       return;
     }else{
-      this.props.loginCheck(loginData.email, loginData.isLoggedIn);
+      this.props.loginCheck(loginData.email, loginData.isLoggedIn, loginData.user_id);
       this.setState({
         isLoggedIn: loginData.isLoggedIn
       })
@@ -118,8 +118,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      loginCheck: (email, password) => {
-          return dispatch(loginCheck(email, password));
+      loginCheck: (email, password, user_id) => {
+          return dispatch(loginCheck(email, password, user_id));
       },
       loginEnd: () => {
           return dispatch(loginEnd());

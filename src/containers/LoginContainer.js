@@ -16,7 +16,8 @@ class LoginContainer extends Component {
         if(this.props.status === "SUCCESS") {
           let loginData = {
                 isLoggedIn: true,
-                email: id
+                email: id,
+                user_id: this.props.user_id
           };
           document.cookie = 'key=' + btoa(JSON.stringify(loginData));
           return true;
@@ -40,7 +41,8 @@ class LoginContainer extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        status: state.authentication.login.status
+        status: state.authentication.login.status,
+        user_id: state.authentication.status.user_id
     };
 };
 

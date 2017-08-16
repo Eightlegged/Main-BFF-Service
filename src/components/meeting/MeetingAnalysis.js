@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import $ from "jquery";
 import rd3 from 'react-d3';
+import axios from 'axios';
 
 
+var PieChart = rd3.PieChart;
 
 class MeetingAnalysis extends Component {
   constructor(props) {
@@ -16,23 +19,28 @@ class MeetingAnalysis extends Component {
  }
 
  renderPieChart() {
-    var PieChart = rd3.PieChart
-    var data = [
+
+    /*var data = [
         {label:'비즈니스',value:23},
         {label:'디지털',value:16},
         {label:'요구',value:13},
         {label:'사항',value:9},
         {label:'고객',value:9},
         {label:'트랜스',value:8}
-   ]
+   ]*/
+   let url ="http://10.250.65.114:8088/detailpietextword/?part=" + (this.props.data.id).toString();
+   //let url ="http://10.250.65.114:8088/detailpietextword/?part=MT1"
+   axios.get(url).then((response) => {
+     let data = response.data;
+     ReactDOM.render(
+         <PieChart data={data} radius={120} innerRadius={20} width={450} height={400} />,
+       document.getElementById('pie'));
+   })
 
-		return(
-      <PieChart data={data} radius={120} innerRadius={20} width={450} height={400} />
-    )
 	}
 
   renderKeywordTable() {
-    var data = [
+    /*var data = [
       {keyword: "DT", keywordnum: 15},
       {keyword: "디지털", keywordnum: 13},
       {keyword: "트랜스포메이션", keywordnum: 12},
@@ -42,42 +50,54 @@ class MeetingAnalysis extends Component {
       {keyword: "Abril", keywordnum: 7},
       {keyword: "CloudZ", keywordnum: 6},
       {keyword: "클라우드", keywordnum: 5}
-    ];
+    ];*/
+    let url ="http://10.250.65.114:8088/alldetailpietextword/?part=" + (this.props.data.id).toString();
+    //let url ="http://10.250.65.114:8088/alldetailpietextword/?part=MT1"
+    axios.get(url).then((response) => {
+      let data = response.data;
+      $('#keywordtable > tbody >tr').remove();
+  		for (var i = 0; i < data.length; i++){
+        $('#keywordtable > tbody').append(
+  				'<tr><td>' + (i + 1) + '</td>' + '<td>'
+  				+ data[i].keyword + '</td><td>'
+  				+ data[i].keywordnum + '</td></tr>');
+      }
+    })
 
-		$('#keywordtable > tbody >tr').remove();
-		for (var i = 0; i < data.length; i++){
-      $('#keywordtable > tbody').append(
-				'<tr><td>' + (i + 1) + '</td>' + '<td>'
-				+ data[i].keyword + '</td><td>'
-				+ data[i].keywordnum + '</td></tr>');
-    }
   }
 
   renderStructedPaper() {
-        var text = '스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중 스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중. 스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중. 첫째로 치한 방지, 둘째로 여성, 초등학생 및 미취학 아동, 신체 부자유자와 보호자의 안심 이용을 목적으로 여성 전용차량을 도입하였습니다. 자세한 사항은 「지하철 승차 시에 고려해야 할 점」 페이지를 참조하십시오. 여러분의 이해와 협조에 감사드립니다. 예를 들어 다음과 같은 글을 쓴다면 이렇게 ex)가 앞에 붙어서 나오는 놀라운 일이 벌어집니다. 구조화 기능은 예시를 계속 추가해 주어야 더욱 자세하게 작동합니다.'
+        //var text = '스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중 스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중. 스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중. 첫째로 치한 방지, 둘째로 여성, 초등학생 및 미취학 아동, 신체 부자유자와 보호자의 안심 이용을 목적으로 여성 전용차량을 도입하였습니다. 자세한 사항은 「지하철 승차 시에 고려해야 할 점」 페이지를 참조하십시오. 여러분의 이해와 협조에 감사드립니다. 예를 들어 다음과 같은 글을 쓴다면 이렇게 ex)가 앞에 붙어서 나오는 놀라운 일이 벌어집니다. 구조화 기능은 예시를 계속 추가해 주어야 더욱 자세하게 작동합니다.'
 
-				$('#textpaper >p ').remove();
-        text = text.replace(/다. /gi, "다.<br>");
-        text = text.replace(/오. /gi, "오.<br>");
-        text = text.replace(/요. /gi, "요.<br>");
-				text = text.replace(/1./gi, "<br><br>1.");
-				text = text.replace(/2./gi, "<br><br>2.");
-				text = text.replace(/3./gi, "<br><br>3.");
-				text = text.replace(/4./gi, "<br><br>4.");
-				text = text.replace(/첫번째/gi, "<br><br>1.");
-				text = text.replace(/두번째/gi, "<br><br>2.");
-				text = text.replace(/세번째/gi, "<br><br>3.");
-				text = text.replace(/네번째/gi, "<br><br>4.");
-        text = text.replace(/첫째로/gi, "<br><br>1.");
-        text = text.replace(/둘째로/gi, "<br><br>2.");
-        text = text.replace(/첫번째로/gi, "<br><br>1.");
-        text = text.replace(/두번째로/gi, "<br><br>2.");
-				text = text.replace(/예를 들어/gi, "<br><br>ex)");
-				text = text.replace(/예로/gi, "<br><br>ex)");
-				$('#textpaper').append('<p>' + text + '</p>');
+      let url ="http://10.250.65.114:8088/showpaper/?part=" + (this.props.data.id).toString();
+      //let url ="http://10.250.65.114:8088/showpaper/?part=MT1"
+        axios.get(url).then((response) => {
+          let text = response.data;
+          $('#textpaper >p ').remove();
+          text = text.replace(/다. /gi, "다.<br>");
+          text = text.replace(/오. /gi, "오.<br>");
+          text = text.replace(/요. /gi, "요.<br>");
+  				text = text.replace(/1./gi, "<br><br>1.");
+  				text = text.replace(/2./gi, "<br><br>2.");
+  				text = text.replace(/3./gi, "<br><br>3.");
+  				text = text.replace(/4./gi, "<br><br>4.");
+  				text = text.replace(/첫번째/gi, "<br><br>1.");
+  				text = text.replace(/두번째/gi, "<br><br>2.");
+  				text = text.replace(/세번째/gi, "<br><br>3.");
+  				text = text.replace(/네번째/gi, "<br><br>4.");
+          text = text.replace(/첫째로/gi, "<br><br>1.");
+          text = text.replace(/둘째로/gi, "<br><br>2.");
+          text = text.replace(/첫번째로/gi, "<br><br>1.");
+          text = text.replace(/두번째로/gi, "<br><br>2.");
+  				text = text.replace(/예를 들어/gi, "<br><br>ex)");
+  				text = text.replace(/예로/gi, "<br><br>ex)");
+  				$('#textpaper').append('<p>' + text + '</p>');
+        })
+
 	}
 
   renderKeywordPaper() {
+      /*
         var data = [
         '기업','운영','기존','관리','방식','탈피','디지털','기술','가미','트랜스','트랜스포메이션','포메이션','기업규모','규모','모든','비즈니스','필요','물류','금융','의료','의료서비스','서비스','등등',
         '다양','산업','산업군','군','요구','수','고객','직원','우수','경험','제공','혁신적','프로세스','사용','속도','진화','오늘날','환경','솔루션','이것','세계적','기업간의','간의','경쟁','방법',
@@ -86,30 +106,38 @@ class MeetingAnalysis extends Component {
         '때문','점차','가치','부여','노력','절감','결과','시작','기대','요구사항','무엇','파악','중요','편리','이유','발전','지에','대한','여부','성공적','아래','성숙도','1','측면','결과적',
         '브랜드','충성','높임','2','오리엔테이션','중심','의사','결정','촉진','성능','투명성','디지털화','화','3','새','모델','부응','세계','변혁','폭풍','조직운영','뿐','구조','전반','영향',
         '생산','창출','앞장'
-      ];
+      ];*/
 
-				$('#textpaper1 >p ').remove();
-				var str='<p style="word-break: option;">';
-				var j=1;
-				for(var i=0;i<data.length;i++){
+        let url ="http://10.250.65.114:8088/keywordshow/?part=" + (this.props.data.id).toString();
+        //let url ="http://10.250.65.114:8088/keywordshow/?part=MT1";
+        axios.get(url).then((response) => {
+          let data = response.data;
+          $('#textpaper1 >p ').remove();
+          var str='<p style="word-break: option;">';
+          var j=1;
+          for(var i=0;i<data.length;i++){
 
-					if(i==data.length-1){
-						str+=data[i]
-					}else{
-						str+=data[i]+", ";
-					}
+            if(i==data.length-1){
+              str+=data[i]
+            }else{
+              str+=data[i]+", ";
+            }
 
-				}
-				$('#textpaper1').append(str);
+          }
+          $('#textpaper1').append(str);
+        })
+
 	}
 
   componentDidMount() {
+    this.renderPieChart();
     this.renderKeywordTable();
     this.renderKeywordPaper();
     this.renderStructedPaper();
   }
 
   componentDidUpdate(prevProps, prevState){
+    this.renderPieChart();
     this.renderKeywordTable();
     this.renderKeywordPaper();
     this.renderStructedPaper();
@@ -143,7 +171,7 @@ class MeetingAnalysis extends Component {
                   <th>순서</th>
                   <th>이름</th>
                   <th>이메일</th>
-                  <th>샘플</th>
+                  <th>파트</th>
                 </tr>
               </thead>
               <tbody>
@@ -153,7 +181,7 @@ class MeetingAnalysis extends Component {
                       <td scope="row">{i+1}</td>
                       <td>{data.name}</td>
                       <td>{data.email}</td>
-                      <td>뭘넣어야할까용</td>
+                      <td>{data.partName}</td>
                     </tr>
                   );
                 })}
@@ -167,8 +195,13 @@ class MeetingAnalysis extends Component {
 
       <div className="row">
         <div className="col-lg-12 col-md-12">
-            <h3>구조화 문서</h3>
+
             <div className="panel panel-default">
+              <div className="panel-heading">
+  							<h3 className="panel-title">
+  								<i className="fa fa-bar-chart-o fa-fw"></i> 구조화 문서
+  							</h3>
+  						</div>
               <div className="panel-body" style={{ overflowY: "auto", maxHeight: "600px"}}>
                   <div id="textpaper"></div>
               </div>
@@ -178,8 +211,12 @@ class MeetingAnalysis extends Component {
 
       <div className="row">
         <div className="col-lg-12 col-md-12">
-            <h3>세부 키워드</h3>
             <div className="panel panel-default">
+              <div className="panel-heading">
+  							<h3 className="panel-title">
+  								<i className="fa fa-bar-chart-o fa-fw"></i> 구조화 흐름
+  							</h3>
+  						</div>
               <div className="panel-body" style={{ overflowY: "auto", maxHeight: "435px"}}>
                 <div className="table-responsive">
                   <div id="textpaper1"></div>
@@ -191,10 +228,12 @@ class MeetingAnalysis extends Component {
 
       <div className="row">
         <div className="col-lg-6 col-md-6">
-          <h3>
-            키워드 분석차트
-          </h3>
           <div className="panel panel-default">
+            <div className="panel-heading">
+							<h3 className="panel-title">
+								<i className="fa fa-long-arrow-right fa-fw"></i>키워드 분석차트
+							</h3>
+						</div>
             <div className="panel-body" style={{overflowX: "auto"}}>
               <div id="pie">
                 {this.renderPieChart()}
@@ -203,10 +242,12 @@ class MeetingAnalysis extends Component {
           </div>
         </div>
         <div className="col-lg-6 col-md-6">
-          <h3>
-            키워드 빈도수 표
-          </h3>
           <div className="panel panel-default">
+            <div className="panel-heading">
+							<h3 className="panel-title">
+								<i className="fa fa-money fa-fw"></i>세부 키워드
+							</h3>
+						</div>
             <div className="panel-body"
               style={{overflowY: "scroll", height: "435px"}}>
               <div className="table-responsive">

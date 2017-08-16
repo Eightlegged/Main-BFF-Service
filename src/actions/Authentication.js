@@ -23,12 +23,13 @@ export function loginRequest(email, password) {
         // Inform Login http://smabackend.mybluemix.net is starting
         dispatch(login());
 
-        return axios.post('api/user/login', { email, password })
+        return axios.post('http://10.250.65.116:8080/user/login', { email, password })
         .then((response) => {
             console.log(response);
             // SUCCEED
             if(response.data.result=="SUCCESS"){
-              dispatch(loginSuccess(email));
+              let data = response.data;
+              dispatch(loginSuccess(data.USER_ID, email));
             }else{
               dispatch(loginFailure());
             }
@@ -45,9 +46,10 @@ export function login() {
     };
 }
 
-export function loginSuccess(email) {
+export function loginSuccess(user_id, email) {
     return {
         type: AUTH_LOGIN_SUCCESS,
+        user_id,
         email
     };
 }
@@ -100,10 +102,11 @@ export function logoutEnd() {
   }
 }
 
-export function loginCheck(email, isLoggedIn) {
+export function loginCheck(email, isLoggedIn, user_id) {
     return {
       type: AUTH_LOGGED_IN,
       email,
-      isLoggedIn
+      isLoggedIn,
+      user_id
     };
 }
