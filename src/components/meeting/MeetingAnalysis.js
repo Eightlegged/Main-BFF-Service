@@ -75,12 +75,7 @@ class MeetingAnalysis extends Component {
           let text = response.data;
           $('#textpaper >p ').remove();
           text = text.replace(/다. /gi, "다.<br>");
-          text = text.replace(/오. /gi, "오.<br>");
           text = text.replace(/요. /gi, "요.<br>");
-  				text = text.replace(/1./gi, "<br><br>1.");
-  				text = text.replace(/2./gi, "<br><br>2.");
-  				text = text.replace(/3./gi, "<br><br>3.");
-  				text = text.replace(/4./gi, "<br><br>4.");
   				text = text.replace(/첫번째/gi, "<br><br>1.");
   				text = text.replace(/두번째/gi, "<br><br>2.");
   				text = text.replace(/세번째/gi, "<br><br>3.");

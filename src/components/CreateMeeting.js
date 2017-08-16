@@ -51,7 +51,7 @@ class CreateMeeting extends React.Component {
             let user = this.state.user;
             let startTime = this.state.startTime;
             let comment = this.state.comment;
-            let partName = "QA";
+            let partName = "Architecture";
             let checkList = this.state.checkList;
             let splitArray = user.split(", ");
             let userList = [];
