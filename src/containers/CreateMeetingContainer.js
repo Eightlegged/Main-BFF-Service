@@ -41,8 +41,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createMeetingRequest: (title, content, date, userList, startTime, comment, partName) => {
-            return dispatch(createMeetingRequest(title, content, date, userList, startTime, comment, partName));
+        createMeetingRequest: (title, content, date, userList, startTime, comment, partName, checkList) => {
+            return dispatch(createMeetingRequest(title, content, date, userList, startTime, comment, partName, checkList));
         }
     };
 };

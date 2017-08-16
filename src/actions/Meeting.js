@@ -25,12 +25,12 @@ import axios from 'axios';
 ==============================================================================*/
 
 /* CREATE_MEETING */
-export function createMeetingRequest(title, content, date, userList, startTime, comment, partName) {
+export function createMeetingRequest(title, content, date, userList, startTime, comment, partName, checkList) {
     return (dispatch) => {
         // Inform Login API is starting
         dispatch(createMeeting());
 
-        return axios.post('api/meeting/add', { title, content, date, userList, startTime, comment, partName })
+        return axios.post('api/meeting/add', { title, content, date, userList, startTime, comment, partName, checkList })
         .then((response) => {
             console.log(response);
             // SUCCEED

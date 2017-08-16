@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {  Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { withRouter } from 'react-router'
+import $ from "jquery";
 
 class CreateMeeting extends React.Component {
       constructor(props) {
@@ -11,17 +12,36 @@ class CreateMeeting extends React.Component {
             date: "",
             user: "",
             startTime: "",
-            comment: ""
+            comment: "",
+            check: "",
+            checkList: []
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleCreateMeeting = this.handleCreateMeeting.bind(this);
-
+        this.addCheckList = this.addCheckList.bind(this);
       }
 
       handleChange(e) {
           let nextState = {};
           nextState[e.target.name] = e.target.value;
           this.setState(nextState);
+      }
+
+      addCheckList() {
+          let arr = this.state.checkList;
+          arr.push(this.state.check);
+          this.setState({
+            checkList: arr
+          });
+          var str = '<label><input type="checkbox">';
+          str += this.state.check;
+          str += '</label><br>';
+          $('#checkBox').append(
+             str
+          );
+          this.setState({
+            check: ''
+          });
       }
 
       handleCreateMeeting() {
@@ -32,7 +52,7 @@ class CreateMeeting extends React.Component {
             let startTime = this.state.startTime;
             let comment = this.state.comment;
             let partName = "QA";
-
+            let checkList = this.state.checkList;
             let splitArray = user.split(", ");
             let userList = [];
             console.log(user);
@@ -45,7 +65,7 @@ class CreateMeeting extends React.Component {
               userList.push(obj);
             }
 
-            this.props.onCreateMeeting(title, content, date, userList, startTime, comment, partName).then(
+            this.props.onCreateMeeting(title, content, date, userList, startTime, comment, partName, checkList).then(
                 (success) => {
                     if(!success) {
                         alert('회의 생성 실패');
@@ -108,11 +128,22 @@ class CreateMeeting extends React.Component {
                             <Label>개요</Label>
                             <Input type="text" name="comment" onChange={this.handleChange} value={this.state.comment} />
                           </FormGroup>
+                        </Form>
 
+                        <Label>체크리스트</Label>
+                        <form className="form-inline">
+                          <FormGroup row>
+                            <Input type="text" name="check" onChange={this.handleChange} value={this.state.check} /><Button onClick={this.addCheckList}>추가</Button>
+                          </FormGroup>
+                        </form>
+                        <Form>
+                          <FormGroup row>
+                            <div className="checkbox" id="checkBox">
+                            </div>
+                          </FormGroup>
                           <FormGroup check row>
                               <Button onClick={this.handleCreateMeeting}>Submit</Button>
                           </FormGroup>
-
                         </Form>
                       </div>
                       <div className="col-md-4">
