@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import MeetingList from './MeetingList';
 import MeetingAnalysis from './MeetingAnalysis';
-import SttTest from '../SttTest';
+import MeetingStart from './MeetingStart';
 
 
 class Meeting extends Component {
@@ -22,7 +22,7 @@ class Meeting extends Component {
       if(this.props.meetingStatus == 'END'){
         return(<MeetingAnalysis data={this.props.currentMeeting.data}/>);
       }else{
-        return(<SttTest data={this.props.currentMeeting.data}/>);
+        return(<MeetingStart onMeetingSave={this.props.meetingSaveRequest} data={this.props.currentMeeting.data}/>);
 
       }
 

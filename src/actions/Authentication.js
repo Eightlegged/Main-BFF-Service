@@ -23,7 +23,7 @@ export function loginRequest(email, password) {
         // Inform Login http://smabackend.mybluemix.net is starting
         dispatch(login());
 
-        return axios.post('http://smabackend.mybluemix.net/user/login', { email, password })
+        return axios.post('api/user/login', { email, password })
         .then((response) => {
             console.log(response);
             // SUCCEED

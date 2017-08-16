@@ -20,6 +20,9 @@ const initialState = {
     },
     currentMeeting: {
       data: {}
+    },
+    meetingSaveStatus: {
+      status: 'END'
     }
 };
 
@@ -119,6 +122,30 @@ export default function meeting(state, action) {
         case types.MEETING_LOAD_END:
             return update(state, {
                 meetingLoadStatus: {
+                    status: { $set: 'END' }
+                }
+        });
+        case types.MEETING_SAVE:
+            return update(state, {
+                meetingSaveStatus: {
+                    status: { $set: 'WAITING' }
+                }
+        });
+        case types.MEETING_SAVE_SUCCESS:
+            return update(state, {
+                meetingSaveStatus: {
+                    status: { $set: 'SUCCESS' }
+                }
+        });
+        case types.MEETING_SAVE_FAILURE:
+            return update(state, {
+                meetingSaveStatus: {
+                    status: { $set: 'FAILURE' }
+                }
+        });
+        case types.MEETING_SAVE_END:
+            return update(state, {
+                meetingSaveStatus: {
                     status: { $set: 'END' }
                 }
         });

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Meeting from '../components/meeting/Meeting';
 import { connect } from 'react-redux';
-import { meetingListLoadRequest, meetingLoadRequest  } from '../actions/Meeting';
+import { meetingListLoadRequest, meetingLoadRequest, meetingSaveRequest  } from '../actions/Meeting';
 
 class CreateMeetingContainer extends Component {
   constructor(props){
@@ -27,8 +27,10 @@ class CreateMeetingContainer extends Component {
          meetingList={this.props.meetingList}
          meetingListLoadStatus={this.props.meetingListLoadStatus}
          currentMeeting={this.props.currentMeeting}
+         meetingSaveStatus={this.props.meetingSaveStatus}
          meetingListLoadRequest={this.props.meetingListLoadRequest}
          meetingLoadRequest={this.props.meetingLoadRequest}
+         meetingSaveRequest={this.props.meetingSaveRequest}
          />
       </div>
     );
@@ -43,7 +45,8 @@ const mapStateToProps = (state) => {
         meetingListLoadStatus: state.meeting.meetingListLoadStatus,
         meetingList: state.meeting.meetingList,
         meetingLoadStatus: state.meeting.meetingLoadStatus,
-        currentMeeting: state.meeting.currentMeeting
+        currentMeeting: state.meeting.currentMeeting,
+        meetingSaveStatus: state.meeting.meetingSaveStatus
     };
 };
 
@@ -54,6 +57,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         meetingLoadRequest: (id, status) => {
             return dispatch(meetingLoadRequest(id, status));
+        },
+        meetingSaveRequest: (id, data) => {
+            return dispatch(meetingSaveRequest(id, data));
         }
     };
 };

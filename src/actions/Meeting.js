@@ -12,7 +12,11 @@ import {
   MEETING_LOAD,
   MEETING_LOAD_SUCCESS,
   MEETING_LOAD_FAILURE,
-  MEETING_LOAD_END
+  MEETING_LOAD_END,
+  MEETING_SAVE,
+  MEETING_SAVE_SUCCESS,
+  MEETING_SAVE_FAILURE,
+  MEETING_SAVE_END
 } from './ActionTypes';
 import axios from 'axios';
 
@@ -26,7 +30,7 @@ export function createMeetingRequest(title, content, date, userList, startTime, 
         // Inform Login API is starting
         dispatch(createMeeting());
 
-        return axios.post('http://smabackend.mybluemix.net/meeting/add', { title, content, date, userList, startTime, comment, partName })
+        return axios.post('api/meeting/add', { title, content, date, userList, startTime, comment, partName })
         .then((response) => {
             console.log(response);
             // SUCCEED
@@ -88,12 +92,12 @@ export function meetingListLoadRequest(id) {
   return (dispatch) => {
       // Inform Login API is starting
       dispatch(meetingLoad());
-      let url = 'http://smabackend.mybluemix.net/user/end/' + id;
+      let url = 'api/user/end/' + id;
       return axios.get(url)
       .then((response) => {
         let end = response.data;
         console.log(response);
-        url = 'http://smabackend.mybluemix.net/user/wait/' + id;
+        url = 'api/user/wait/' + id;
         return axios.get(url)
         .then((res) => {
           let wait = res.data;
@@ -141,7 +145,7 @@ export function meetingLoadRequest(id, status) {
     return (dispatch) => {
         // Inform Login API is starting
         dispatch(meetingLoad());
-        let url = 'http://smabackend.mybluemix.net/meeting/info/' + id.toString();
+        let url = 'api/meeting/info/' + id.toString();
         return axios.get(url)
         .then((response) => {
           console.log(response);
@@ -179,5 +183,46 @@ export function meetingLoadFailure() {
 export function meetingLoadEnd() {
   return {
       type: MEETING_LOAD_END
+  }
+}
+
+/* MEETING_SAVE */
+
+export function meetingSaveRequest(id, data) {
+    return (dispatch) => {
+        // Inform Login API is starting
+        dispatch(meetingSave());
+        let url = 'api/meeting/info/' + id.toString();
+        return axios.get(url)
+        .then((response) => {
+          console.log(response);
+          dispatch(meetingSaveSuccess(response.data));
+        }).catch((error) => {
+          dispatch(meetingSaveFailure());
+        });
+    };
+}
+
+export function meetingSave() {
+  return {
+      type: MEETING_SAVE
+  }
+}
+
+export function meetingSaveSuccess() {
+  return {
+      type: MEETING_SAVE_SUCCESS
+  }
+}
+
+export function meetingSaveFailure() {
+  return {
+      type: MEETING_SAVE_FAILURE
+  }
+}
+
+export function meetingSaveEnd() {
+  return {
+      type: MEETING_SAVE_END
   }
 }

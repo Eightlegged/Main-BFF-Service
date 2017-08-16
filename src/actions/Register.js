@@ -16,7 +16,7 @@ export function signUpRequest(email, password, userName) {
         // Inform Login API is starting
         dispatch(signUp());
 
-        return axios.post('http://smabackend.mybluemix.net/user/add', { email, password, userName })
+        return axios.post('api/user/add', { email, password, userName })
         .then((response) => {
             console.log(response);
             // SUCCEED
