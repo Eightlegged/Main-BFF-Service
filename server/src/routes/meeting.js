@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/add', (req, res) => {
     return res.json({
-        success: true
+        result: "SUCCESS"
     });
 });
 

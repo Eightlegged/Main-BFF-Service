@@ -11,8 +11,8 @@ class CreateMeetingContainer extends Component {
     this.handleCreateMeeting = this.handleCreateMeeting.bind(this);
   }
 
-  handleCreateMeeting(title, content, date, userList, startTime, comment, partName) {
-      return this.props.createMeetingRequest(title, content, date, userList, startTime, comment, partName).then(() => {
+  handleCreateMeeting(title, content, date, userList, startTime, comment, partName, checkList) {
+      return this.props.createMeetingRequest(title, content, date, userList, startTime, comment, partName, checkList).then(() => {
         if(this.props.status === "SUCCESS") {
           return true;
         } else {

@@ -8,6 +8,7 @@ const propTypes = {
   interimTranscript : PropTypes.string,
   resetTranscript: PropTypes.func,
   browserSupportsSpeechRecognition: PropTypes.bool,
+  finalTranscript: PropTypes.string,
   listening : PropTypes.bool,
   recognition : PropTypes.object,
   startListening : PropTypes.func,
@@ -65,6 +66,7 @@ class MeetingStart extends Component{
                 interimTranscript,
                 resetTranscript,
                 browserSupportsSpeechRecognition,
+                finalTranscript,
                 listening,
                 recognition,
                 startListening,
@@ -108,7 +110,7 @@ class MeetingStart extends Component{
                           <FormGroup>
                           <Label>인식 결과</Label>
                           <Input type="textarea" name="text" id="result_text" style={{resize: "none", height: 150}}
-                                 value={this.props.transcript} onChange={this.handleChange} />
+                                 value={this.props.finalTranscript} onChange={this.handleChange} />
                           </FormGroup>
                       </Form>
                       <div style={{textAlign: "center"}}>

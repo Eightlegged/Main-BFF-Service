@@ -128,12 +128,14 @@ class CreateMeeting extends React.Component {
                             <Label>개요</Label>
                             <Input type="text" name="comment" onChange={this.handleChange} value={this.state.comment} />
                           </FormGroup>
+                          <FormGroup row>
+                            <Label>체크리스트</Label>
+                          </FormGroup>
                         </Form>
 
-                        <Label>체크리스트</Label>
                         <form className="form-inline">
                           <FormGroup row>
-                            <Input type="text" name="check" onChange={this.handleChange} value={this.state.check} /><Button onClick={this.addCheckList}>추가</Button>
+                            <Input type="text" name="check" onChange={this.handleChange} value={this.state.check} />{' '}<Button onClick={this.addCheckList}>추가</Button>
                           </FormGroup>
                         </form>
                         <Form>
