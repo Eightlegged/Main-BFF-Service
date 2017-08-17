@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Header from '../components/header/Header';
+import Header from '../components/Header';
 import { connect } from 'react-redux';
 import { logoutRequest } from '../actions/Authentication';
 

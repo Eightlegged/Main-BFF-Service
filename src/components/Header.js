@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
-import TeamLogo from '../../img/TeamLogo.png';
-
 
 class Header extends Component{
   constructor(props) {

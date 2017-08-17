@@ -9,7 +9,7 @@ import LoginContainer from './containers/LoginContainer';
 import SignUpContainer from './containers/SignUpContainer';
 import CreateMeetingContainer from './containers/CreateMeetingContainer';
 import MeetingContainer from './containers/MeetingContainer';
-import SttTest from './components/SttTest';
+
 
 
 class App extends Component {
@@ -90,13 +90,6 @@ class App extends Component {
             <Route path="/create" render={() => (
             this.state.isLoggedIn ? (
                 <CreateMeetingContainer/>
-              ) : (
-                <Redirect to="/login"/>
-              )
-            )}/>
-            <Route path="/SttTest" render={() => (
-            this.state.isLoggedIn ? (
-                <SttTest/>
               ) : (
                 <Redirect to="/login"/>
               )
