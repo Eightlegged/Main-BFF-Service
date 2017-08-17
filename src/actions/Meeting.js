@@ -30,8 +30,9 @@ export function createMeetingRequest(title, content, date, userList, startTime, 
     return (dispatch) => {
         // Inform Login API is starting
         dispatch(createMeeting());
-
-        return axios.post('http://10.250.65.116:8080/meeting/add', { title, content, date, userList, startTime, comment, partName, checkList })
+        let P_url = 'http://10.250.65.116:8080/meeting/add';
+        let url = 'api/meeting/add';
+        return axios.post(url, { title, content, date, userList, startTime, comment, partName, checkList })
         .then((response) => {
             console.log(response);
             // SUCCEED
@@ -99,12 +100,14 @@ export function meetingListLoadRequest(id) {
   return (dispatch) => {
       // Inform Login API is starting
       dispatch(meetingLoad());
-      let url = 'http://10.250.65.116:8080/user/end/' + id;
+      let P_url = 'http://10.250.65.116:8080/user/end/' + id;
+      let url = 'api/user/end/' + id;
       return axios.get(url)
       .then((response) => {
         let end = response.data;
         console.log(response);
-        url = 'http://10.250.65.116:8080/user/wait/' + id;
+        let P_url = 'http://10.250.65.116:8080/user/wait/' + id;
+        let url = 'api/user/wait/' + id;
         return axios.get(url)
         .then((res) => {
           let wait = res.data;
@@ -152,7 +155,8 @@ export function meetingLoadRequest(id, status) {
     return (dispatch) => {
         // Inform Login API is starting
         dispatch(meetingLoad());
-        let url = 'http://10.250.65.116:8080/meeting/info/' + id.toString();
+        let P_url = 'http://10.250.65.116:8080/meeting/info/' + id.toString();
+        let url = 'api/meeting/info/' + id.toString();
         return axios.get(url)
         .then((response) => {
           console.log(response);

@@ -5,7 +5,8 @@ const router = express.Router();
 
 router.post('/login', (req, res) => {
     return res.json({
-        result: "SUCCESS"
+        result: "SUCCESS",
+        USER_ID: 1
     });
 });
 
@@ -15,7 +16,7 @@ router.post('/add', (req, res) => {
     });
 });
 
-router.get('/end/1@1.com', (req, res) => {
+router.get('/end/1', (req, res) => {
     return res.json([
       { "id": 1,
       "title": "end1",
@@ -70,7 +71,7 @@ router.get('/end/1@1.com', (req, res) => {
     ]);
 });
 
-router.get('/wait/1@1.com', (req, res) => {
+router.get('/wait/1', (req, res) => {
     return res.json([
       { "id": 1,
       "title": "wait1",

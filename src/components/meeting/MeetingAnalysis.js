@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Nav, NavItem, NavLink } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import { Route } from 'react-router-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 import $ from "jquery";
 import rd3 from 'react-d3';
 import axios from 'axios';
@@ -35,7 +31,12 @@ class MeetingAnalysis extends Component {
      ReactDOM.render(
          <PieChart data={data} radius={120} innerRadius={20} width={450} height={400} />,
        document.getElementById('pie'));
-   })
+   }).catch((error) => {
+       // FAILED
+       ReactDOM.render(
+           <div/>,
+         document.getElementById('pie'));
+   });
 
 	}
 
@@ -62,7 +63,12 @@ class MeetingAnalysis extends Component {
   				+ data[i].keyword + '</td><td>'
   				+ data[i].keywordnum + '</td></tr>');
       }
-    })
+    }).catch((error) => {
+        // FAILED
+        ReactDOM.render(
+            <div/>,
+          document.getElementById('#keywordtable > tbody'));
+    });
 
   }
 
@@ -87,7 +93,12 @@ class MeetingAnalysis extends Component {
   				text = text.replace(/예를 들어/gi, "<br><br>ex)");
   				text = text.replace(/예로/gi, "<br><br>ex)");
   				$('#textpaper').append('<p>' + text + '</p>');
-        })
+        }).catch((error) => {
+            // FAILED
+            ReactDOM.render(
+                <div/>,
+              document.getElementById('#textpaper'));
+        });
 
 	}
 
@@ -120,7 +131,12 @@ class MeetingAnalysis extends Component {
 
           }
           $('#textpaper1').append(str);
-        })
+        }).catch((error) => {
+            // FAILED
+            ReactDOM.render(
+                <div/>,
+              document.getElementById('#textpaper1'));
+        });
 
 	}
 
@@ -146,11 +162,21 @@ class MeetingAnalysis extends Component {
           <h3>회의 기본 정보</h3>
           <div className="panel panel-default">
             <div className="panel-body">
-              <p>주제: {this.props.data.title}</p>
-              <p>날짜: {this.props.data.date}</p>
-              <p>시간: {this.props.data.startTime}</p>
-              <p>코멘트</p>
-              <p>{this.props.data.comment}</p>
+              <h3>{this.props.data.title}</h3>
+              <br/>
+              <p><span className="label label-success">날짜</span> {'  '}{this.props.data.date}</p>
+              <p><span className="label label-warning">시간</span> {'  '}{this.props.data.startTime}</p>
+              <br/>
+              <div className="panel panel-default">
+                <div className="panel-heading">
+    							<h4 className="panel-title">
+    								코멘트
+    							</h4>
+    						</div>
+                <div className="panel-body" style={{ overflowY: "auto", maxHeight: "250px"}}>
+                    {this.props.data.comment}
+                </div>
+              </div>
             </div>
           </div>
         </div>

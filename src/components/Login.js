@@ -48,11 +48,11 @@ class Login extends Component {
                 <div className="row">
                     <div className="col-lg-12">
                         <h1 className="page-header">
-                            로그인 <small>2</small>
+                            로그인 <small></small>
                         </h1>
                         <ol className="breadcrumb">
                             <li className="active">
-                                <i className="fa fa-dashboard"></i> Dashboard
+                                <i className="fa fa-user-circle-o"></i> Login
                             </li>
                         </ol>
                     </div>
@@ -73,7 +73,7 @@ class Login extends Component {
                         </FormGroup>
 
                         <FormGroup check row>
-                          <Button onClick={this.handleLogin}>Submit</Button>
+                          <Button color="primary" block onClick={this.handleLogin}>Submit</Button>
                         </FormGroup>
                     </Form>
                   </div>

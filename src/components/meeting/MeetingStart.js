@@ -98,11 +98,21 @@ class MeetingStart extends Component{
                     <h3>회의 기본 정보</h3>
                     <div className="panel panel-default">
                       <div className="panel-body">
-                        <p>주제: {this.props.data.title}</p>
-                        <p>날짜: {this.props.data.date}</p>
-                        <p>시간: {this.props.data.startTime}</p>
-                        <p>코멘트</p>
-                        <p>{this.props.data.comment}</p>
+                        <h3>{this.props.data.title}</h3>
+                        <br/>
+                        <p><span className="label label-success">날짜</span> {'  '}{this.props.data.date}</p>
+                        <p><span className="label label-warning">시간</span> {'  '}{this.props.data.startTime}</p>
+                        <br/>
+                        <div className="panel panel-default">
+                          <div className="panel-heading">
+                            <h4 className="panel-title">
+                              코멘트
+                            </h4>
+                          </div>
+                          <div className="panel-body" style={{ overflowY: "auto", maxHeight: "250px"}}>
+                              {this.props.data.comment}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -122,11 +132,16 @@ class MeetingStart extends Component{
                                  value={this.props.transcript} onChange={this.handleChange} />
                           </FormGroup>
                       </Form>
-                      <div style={{textAlign: "center"}}>
-                        <Button color="success" onClick={this.props.startListening}>시작</Button>{' '}
-                        <Button color="warning" onClick={this.handleSubmit}>종료</Button>
-                      </div>
+
                     </div>
+                </div>
+                <div className="row">
+                  <div className="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
+                    <div style={{textAlign: "center"}}>
+                      <Button color="success" block onClick={this.props.startListening}>시작</Button>{' '}
+                      <Button color="warning" block onClick={this.handleSubmit}>종료</Button>
+                    </div>
+                  </div>
                 </div>
           </div>
         )

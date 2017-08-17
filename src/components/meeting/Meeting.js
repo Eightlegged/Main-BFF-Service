@@ -56,22 +56,13 @@ class Meeting extends Component {
                         </h1>
                         <ol className="breadcrumb">
                             <li className="active">
-                                <i className="fa fa-dashboard"></i> Dashboard
+                                <i className="fa fa-table"></i> Meeting
                             </li>
                         </ol>
                     </div>
                 </div>
 
                 <div className="row">
-                    <div className="col-lg-12">
-                        <div className="alert alert-info alert-dismissable">
-                            <button type="button" className="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <i className="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" className="alert-link">SB Admin 2</a> for additional features!
-                        </div>
-                    </div>
-                </div>
-
-                <div className="row" style={{maxHeight: "600px"}}>
                     <div className="col-lg-6 col-md-6">
                         <div className="panel panel-primary">
                             <div className="panel-heading">

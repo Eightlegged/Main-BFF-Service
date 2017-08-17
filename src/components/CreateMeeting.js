@@ -33,7 +33,7 @@ class CreateMeeting extends React.Component {
           this.setState({
             checkList: arr
           });
-          var str = '<label><input type="checkbox">';
+          var str = '<label><input type="checkbox" disabled>';
           str += this.state.check;
           str += '</label><br>';
           $('#checkBox').append(
@@ -89,7 +89,7 @@ class CreateMeeting extends React.Component {
                             </h1>
                             <ol className="breadcrumb">
                                 <li className="active">
-                                    <i className="fa fa-dashboard"></i> Dashboard
+                                    <i className="fa fa-edit"></i> NewMeeting
                                 </li>
                             </ol>
                         </div>
@@ -126,25 +126,27 @@ class CreateMeeting extends React.Component {
 
                           <FormGroup row>
                             <Label>개요</Label>
-                            <Input type="text" name="comment" onChange={this.handleChange} value={this.state.comment} />
+                            <Input type="textarea" name="comment" onChange={this.handleChange} value={this.state.comment} style={{resize: "none"}} />
                           </FormGroup>
+
+                        </Form>
+
+                        <Form>
                           <FormGroup row>
                             <Label>체크리스트</Label>
+                            <Input type="text" name="check" onChange={this.handleChange} value={this.state.check} />
+                            <br/>
+                            <Button color="primary" block onClick={this.addCheckList}>추가</Button>
                           </FormGroup>
                         </Form>
 
-                        <form className="form-inline">
-                          <FormGroup row>
-                            <Input type="text" name="check" onChange={this.handleChange} value={this.state.check} />{' '}<Button onClick={this.addCheckList}>추가</Button>
-                          </FormGroup>
-                        </form>
                         <Form>
                           <FormGroup row>
                             <div className="checkbox" id="checkBox">
                             </div>
                           </FormGroup>
                           <FormGroup check row>
-                              <Button onClick={this.handleCreateMeeting}>Submit</Button>
+                              <Button color="primary" block onClick={this.handleCreateMeeting}>Submit</Button>
                           </FormGroup>
                         </Form>
                       </div>
