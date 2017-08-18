@@ -24,10 +24,17 @@ class MeetingAnalysis extends Component {
         {label:'고객',value:9},
         {label:'트랜스',value:8}
    ]*/
-   let url ="http://10.250.65.114:8088/detailpietextword/?part=" + (this.props.data.id).toString();
-   //let url ="http://10.250.65.114:8088/detailpietextword/?part=MT1"
+   let url ="http://192.168.0.25:8088/detailpietextword/?part=" + (this.props.data.id).toString();
+   //let url ="http://192.168.0.25:8088/detailpietextword/?part=MT1"
    axios.get(url).then((response) => {
      let data = response.data;
+     var sum =0;
+     for(var i in data){
+       sum += data[i].value;
+     }
+     for(var i in data){
+       data[i].value = (data[i].value * 100 / sum).toFixed(2);
+     }
      ReactDOM.render(
          <PieChart data={data} radius={120} innerRadius={20} width={450} height={400} />,
        document.getElementById('pie'));
@@ -52,8 +59,8 @@ class MeetingAnalysis extends Component {
       {keyword: "CloudZ", keywordnum: 6},
       {keyword: "클라우드", keywordnum: 5}
     ];*/
-    let url ="http://10.250.65.114:8088/alldetailpietextword/?part=" + (this.props.data.id).toString();
-    //let url ="http://10.250.65.114:8088/alldetailpietextword/?part=MT1"
+    let url ="http://192.168.0.25:8088/alldetailpietextword/?part=" + (this.props.data.id).toString();
+    //let url ="http://192.168.0.25:8088/alldetailpietextword/?part=MT1"
     axios.get(url).then((response) => {
       let data = response.data;
       $('#keywordtable > tbody >tr').remove();
@@ -75,22 +82,30 @@ class MeetingAnalysis extends Component {
   renderStructedPaper() {
         //var text = '스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중 스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중. 스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중. 첫째로 치한 방지, 둘째로 여성, 초등학생 및 미취학 아동, 신체 부자유자와 보호자의 안심 이용을 목적으로 여성 전용차량을 도입하였습니다. 자세한 사항은 「지하철 승차 시에 고려해야 할 점」 페이지를 참조하십시오. 여러분의 이해와 협조에 감사드립니다. 예를 들어 다음과 같은 글을 쓴다면 이렇게 ex)가 앞에 붙어서 나오는 놀라운 일이 벌어집니다. 구조화 기능은 예시를 계속 추가해 주어야 더욱 자세하게 작동합니다.'
 
-      let url ="http://10.250.65.114:8088/showpaper/?part=" + (this.props.data.id).toString();
-      //let url ="http://10.250.65.114:8088/showpaper/?part=MT1"
+      let url ="http://192.168.0.25:8088/showpaper/?part=" + (this.props.data.id).toString();
+      //let url ="http://192.168.0.25:8088/showpaper/?part=MT1"
         axios.get(url).then((response) => {
           let text = response.data;
           $('#textpaper >p ').remove();
-          text = text.replace(/다. /gi, "다.<br>");
-          text = text.replace(/요. /gi, "요.<br>");
   				text = text.replace(/첫번째/gi, "<br><br>1.");
   				text = text.replace(/두번째/gi, "<br><br>2.");
   				text = text.replace(/세번째/gi, "<br><br>3.");
   				text = text.replace(/네번째/gi, "<br><br>4.");
+          text = text.replace(/첫 번째/gi, "<br><br>1.");
+          text = text.replace(/두 번째/gi, "<br><br>2.");
+          text = text.replace(/세 번째/gi, "<br><br>3.");
+          text = text.replace(/네 번째/gi, "<br><br>4.");
           text = text.replace(/첫째로/gi, "<br><br>1.");
           text = text.replace(/둘째로/gi, "<br><br>2.");
           text = text.replace(/첫번째로/gi, "<br><br>1.");
           text = text.replace(/두번째로/gi, "<br><br>2.");
   				text = text.replace(/예를 들어/gi, "<br><br>ex)");
+          text = text.replace(/예를들어/gi, "<br><br>ex)");
+          text = text.replace(/참고로/gi, "<br><br>cf)");
+          text = text.replace(/하지만/gi, "<br><br>하지만,");
+          text = text.replace(/마지막으로/gi, "<br><br>마지막으로,");
+          text = text.replace(/결론적으로/gi, "<br><br>결론적으로,");
+          text = text.replace(/중요한것은/gi, "<br><br>중요한것은,");
   				text = text.replace(/예로/gi, "<br><br>ex)");
   				$('#textpaper').append('<p>' + text + '</p>');
         }).catch((error) => {
@@ -114,8 +129,8 @@ class MeetingAnalysis extends Component {
         '생산','창출','앞장'
       ];*/
 
-        let url ="http://10.250.65.114:8088/keywordshow/?part=" + (this.props.data.id).toString();
-        //let url ="http://10.250.65.114:8088/keywordshow/?part=MT1";
+        let url ="http://192.168.0.25:8088/keywordshow/?part=" + (this.props.data.id).toString();
+        //let url ="http://192.168.0.25:8088/keywordshow/?part=MT1";
         axios.get(url).then((response) => {
           let data = response.data;
           $('#textpaper1 >p ').remove();
@@ -163,7 +178,7 @@ class MeetingAnalysis extends Component {
           <div className="panel panel-default">
             <div className="panel-body">
               <h3>{this.props.data.title}</h3>
-              <br/>
+              <hr/>
               <p><span className="label label-success">날짜</span> {'  '}{this.props.data.date}</p>
               <p><span className="label label-warning">시간</span> {'  '}{this.props.data.startTime}</p>
               <br/>
@@ -269,9 +284,7 @@ class MeetingAnalysis extends Component {
 								<i className="fa fa-money fa-fw"></i>세부 키워드
 							</h3>
 						</div>
-            <div className="panel-body"
-              style={{overflowY: "scroll", height: "435px"}}>
-              <div className="table-responsive">
+              <div className="table-responsive" style={{overflowY: "auto", height: "435px"}}>
                 <table className="table table-bordered table-hover table-striped"
                   id="keywordtable">
                   <thead>
@@ -287,7 +300,6 @@ class MeetingAnalysis extends Component {
                   </tbody>
                 </table>
               </div>
-            </div>
           </div>
         </div>
       </div>

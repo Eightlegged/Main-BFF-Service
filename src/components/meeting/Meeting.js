@@ -68,16 +68,14 @@ class Meeting extends Component {
                             <div className="panel-heading">
                                 <div className="row">
                                     <div className="col-xs-3">
-                                        <i className="fa fa-comments fa-5x"></i>
+                                        <i className="fa fa-tasks fa-5x"></i>
                                     </div>
                                     <div className="col-xs-9 text-right">
                                         <div className="huge">종료된 회의</div>
                                     </div>
                                 </div>
                             </div>
-                            <div style={{ overflowY: "auto", maxHeight: "350px"}}>
-                              <MeetingList status={'END'} meetingLoadRequest={this.props.meetingLoadRequest} meetings={this.props.meetingList.endMeetings}/>
-                            </div>
+                            <MeetingList status={'END'} meetingLoadRequest={this.props.meetingLoadRequest} meetings={this.props.meetingList.endMeetings}/>
                         </div>
                     </div>
                     <div className="col-lg-6 col-md-6" >
@@ -85,16 +83,14 @@ class Meeting extends Component {
                             <div className="panel-heading">
                                 <div className="row">
                                     <div className="col-xs-3">
-                                        <i className="fa fa-tasks fa-5x"></i>
+                                        <i className="fa fa-comments fa-5x"></i>
                                     </div>
                                     <div className="col-xs-9 text-right">
                                         <div className="huge">대기중 회의</div>
                                     </div>
                                 </div>
                             </div>
-                            <div style={{ overflowY: "auto", maxHeight: "350px"}}>
-                              <MeetingList status={'WAIT'} meetingLoadRequest={this.props.meetingLoadRequest} meetings={this.props.meetingList.waitMeetings}/>
-                            </div>
+                            <MeetingList status={'WAIT'} meetingLoadRequest={this.props.meetingLoadRequest} meetings={this.props.meetingList.waitMeetings}/>
                         </div>
                     </div>
                 </div>

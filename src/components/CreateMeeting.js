@@ -51,7 +51,7 @@ class CreateMeeting extends React.Component {
             let user = this.state.user;
             let startTime = this.state.startTime;
             let comment = this.state.comment;
-            let partName = "Architecture";
+            let partName = "Communication";
             let checkList = this.state.checkList;
             let splitArray = user.split(", ");
             let userList = [];
@@ -85,7 +85,7 @@ class CreateMeeting extends React.Component {
                     <div className="row">
                         <div className="col-lg-12">
                             <h1 className="page-header">
-                                회의 만들기 <small>2</small>
+                                회의 만들기 <small></small>
                             </h1>
                             <ol className="breadcrumb">
                                 <li className="active">

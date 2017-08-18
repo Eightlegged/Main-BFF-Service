@@ -30,7 +30,7 @@ export function createMeetingRequest(title, content, date, userList, startTime, 
     return (dispatch) => {
         // Inform Login API is starting
         dispatch(createMeeting());
-        let P_url = 'http://10.250.65.116:8080/meeting/add';
+        let P_url = 'http://192.168.0.15:8080/meeting/add';
         let url = 'api/meeting/add';
         return axios.post(url, { title, content, date, userList, startTime, comment, partName, checkList })
         .then((response) => {
@@ -100,13 +100,13 @@ export function meetingListLoadRequest(id) {
   return (dispatch) => {
       // Inform Login API is starting
       dispatch(meetingLoad());
-      let P_url = 'http://10.250.65.116:8080/user/end/' + id;
+      let P_url = 'http://192.168.0.15:8080/user/end/' + id;
       let url = 'api/user/end/' + id;
       return axios.get(url)
       .then((response) => {
         let end = response.data;
         console.log(response);
-        let P_url = 'http://10.250.65.116:8080/user/wait/' + id;
+        let P_url = 'http://192.168.0.15:8080/user/wait/' + id;
         let url = 'api/user/wait/' + id;
         return axios.get(url)
         .then((res) => {
@@ -151,11 +151,19 @@ export function meetingListLoadEnd() {
 
 /* MEETING_LOAD */
 
-export function meetingLoadRequest(id, status) {
+export function meetingLoadRequest(data, status) {
     return (dispatch) => {
         // Inform Login API is starting
         dispatch(meetingLoad());
-        let P_url = 'http://10.250.65.116:8080/meeting/info/' + id.toString();
+
+        dispatch(meetingLoadSuccess(data));
+        if(status == 'END'){
+          dispatch(meetingStatusEnd());
+        }else{
+          dispatch(meetingStatusWait());
+        }
+        /*
+        let P_url = 'http://192.168.0.15:8080/meeting/info/' + id.toString();
         let url = 'api/meeting/info/' + id.toString();
         return axios.get(url)
         .then((response) => {
@@ -169,7 +177,7 @@ export function meetingLoadRequest(id, status) {
 
         }).catch((error) => {
           dispatch(meetingLoadFailure());
-        });
+        });*/
     };
 }
 
@@ -206,11 +214,11 @@ export function meetingSaveRequest(id, data, partName) {
         console.log(id);
         console.log(data);
         dispatch(meetingSave());
-        let url = 'http://10.250.65.114:8088/textinsert/' + id +'/' + data + '/' + partName;
+        let url = 'http://192.168.0.25:8088/textinsert/' + id +'/' + data + '/' + partName;
         return axios.get(url)
         .then((response) => {
           console.log(response);
-          let url = 'http://10.250.65.116:8080/meeting/end/' + id;
+          let url = 'http://192.168.0.15:8080/meeting/end/' + id;
           axios.post(url).then(
             (response) => {
               console.log(response);

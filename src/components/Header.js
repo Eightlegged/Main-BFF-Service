@@ -115,7 +115,7 @@ class Header extends Component{
                       <Link to="/create"><i className="fa fa-fw fa-edit"></i> 회의 생성</Link>
                   </li>
                   <li>
-                      <a href={"http://10.250.65.114:8088/Dashboard1?id=" + this.props.authentication.status.currentUser}><i className="fa fa-fw fa-dashboard"></i> 대시보드</a>
+                      <a href={"http://192.168.0.25:8088/Dashboard1?id=" + this.props.authentication.status.currentUser}><i className="fa fa-fw fa-dashboard"></i> 대시보드</a>
                   </li>
                   <li style={{position: "absolute", bottom: "10px"}}>
                   </li>

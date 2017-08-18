@@ -106,7 +106,7 @@ class MeetingStart extends Component{
                         <div className="panel panel-default">
                           <div className="panel-heading">
                             <h4 className="panel-title">
-                              코멘트
+                              <i className="fa fa-commenting-o fa-fw"></i>코멘트
                             </h4>
                           </div>
                           <div className="panel-body" style={{ overflowY: "auto", maxHeight: "250px"}}>
@@ -124,25 +124,62 @@ class MeetingStart extends Component{
                   </div>
                 </div>
                 <div className="row">
-                    <div className="col-lg-12">
-                      <Form>
-                          <FormGroup>
-                          <Label>인식 결과</Label>
-                          <Input type="textarea" name="text" id="result_text" style={{resize: "none", height: 150}}
-                                 value={this.props.transcript} onChange={this.handleChange} />
-                          </FormGroup>
-                      </Form>
-
+                    <div className="col-lg-6 col-md-6">
+                      <div className="panel panel-default">
+                        <div className="panel-heading">
+                          <h3 className="panel-title">
+                            <i className="fa fa-microphone fa-fw"></i>음성 인식
+                          </h3>
+                        </div>
+                        <Input type="textarea" name="text" id="result_text" style={{resize: "none", height: 400, overflowY: "auto"}}
+                                   value={this.props.transcript} onChange={this.handleChange} />
+                      </div>
                     </div>
-                </div>
-                <div className="row">
-                  <div className="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
-                    <div style={{textAlign: "center"}}>
-                      <Button color="success" block onClick={this.props.startListening}>시작</Button>{' '}
-                      <Button color="warning" block onClick={this.handleSubmit}>종료</Button>
+                    <div className="col-lg-6 col-md-6">
+                    <div className="panel panel-default">
+                      <div className="panel-heading">
+                        <h3 className="panel-title">
+                          <i className="fa fa-check-square-o fa-fw"></i>회의 체크리스트
+                        </h3>
+                      </div>
+                      <ul className="list-group" style={{ height: 500, overflowY: "auto"}}>
+                      
+                        <li className="list-group-item">
+                          <div className="form-check">
+                            <label className="form-check-label">
+                              <input className="form-check-input" type="checkbox" checked disabled />
+                              Option one is this and that&mdash;be sure to include why its great
+                            </label>
+                          </div>
+                        </li>
+                        <li className="list-group-item">
+                          <div className="form-check">
+                            <label className="form-check-label">
+                              <input className="form-check-input" type="checkbox" checked disabled />
+                              Option one is this and that&mdash;be sure to include why its great
+                            </label>
+                          </div>
+                        </li>
+                        <li className="list-group-item">
+                          <div className="form-check">
+                            <label className="form-check-label">
+                              <input className="form-check-input" type="checkbox" checked disabled />
+                              Option one is this and that&mdash;be sure to include why its great
+                            </label>
+                          </div>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
+
+                <div className="row">
+                  <div style={{textAlign: "center"}}>
+                    <Button color="success" size="lg" onClick={this.props.startListening}>시작</Button>{' '}
+                    <Button color="warning" size="lg" onClick={this.handleSubmit}>종료</Button>
+                  </div>
+                </div>
+
           </div>
         )
     }
