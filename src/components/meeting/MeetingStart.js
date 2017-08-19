@@ -146,7 +146,7 @@ class MeetingStart extends Component{
                               return(
                                 <tr key={i+1}>
                                   <td scope="row">{i+1}</td>
-                                  <td>{data.name}</td>
+                                  <td>{data.userName}</td>
                                   <td>{data.email}</td>
                                   <td>{data.partName}</td>
                                 </tr>

@@ -25,8 +25,8 @@ class MeetingAnalysis extends Component {
         {label:'트랜스',value:8}
    ]*/
    let part = this.props.data.id;
-   let url ="http://10.250.65.114:8088/detailpietextword/?part=" + (this.props.data.id).toString();
-   //let url ="http://192.168.0.25:8088/detailpietextword/?part=MT1"
+   let url ="http://192.168.43.164:8088/detailpietextword/?part=" + (this.props.data.id).toString();
+   //let url ="http://192.168.43.1155:8088/detailpietextword/?part=MT1"
    axios.get(url).then((response) => {
      let data = response.data;
      var sum =0;
@@ -61,8 +61,8 @@ class MeetingAnalysis extends Component {
       {keyword: "CloudZ", keywordnum: 6},
       {keyword: "클라우드", keywordnum: 5}
     ];*/
-    let url ="http://10.250.65.114:8088/alldetailpietextword/?part=" + (this.props.data.id).toString();
-    //let url ="http://192.168.0.25:8088/alldetailpietextword/?part=MT1"
+    let url ="http://192.168.43.164:8088/alldetailpietextword/?part=" + (this.props.data.id).toString();
+    //let url ="http://192.168.43.1155:8088/alldetailpietextword/?part=MT1"
     axios.get(url).then((response) => {
       let data = response.data;
       $('#keywordtable > tbody >tr').remove();
@@ -89,8 +89,8 @@ class MeetingAnalysis extends Component {
   renderStructedPaper() {
         //var text = '스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중 스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중. 스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중. 첫째로 치한 방지, 둘째로 여성, 초등학생 및 미취학 아동, 신체 부자유자와 보호자의 안심 이용을 목적으로 여성 전용차량을 도입하였습니다. 자세한 사항은 「지하철 승차 시에 고려해야 할 점」 페이지를 참조하십시오. 여러분의 이해와 협조에 감사드립니다. 예를 들어 다음과 같은 글을 쓴다면 이렇게 ex)가 앞에 붙어서 나오는 놀라운 일이 벌어집니다. 구조화 기능은 예시를 계속 추가해 주어야 더욱 자세하게 작동합니다.'
         let part = this.props.data.id;
-        let url ="http://10.250.65.114:8088/showpaper/?part=" + (this.props.data.id).toString();
-      //let url ="http://192.168.0.25:8088/showpaper/?part=MT1"
+        let url ="http://192.168.43.164:8088/showpaper/?part=" + (this.props.data.id).toString();
+      //let url ="http://192.168.43.1155:8088/showpaper/?part=MT1"
         axios.get(url).then((response) => {
           let text = response.data;
           $('#originaltext').append('<p>' + text + '</p>');
@@ -138,8 +138,8 @@ class MeetingAnalysis extends Component {
         '생산','창출','앞장'
       ];*/
         let part = this.props.data.id;
-        let url ="http://10.250.65.114:8088/keywordshow/?part=" + (this.props.data.id).toString();
-        //let url ="http://192.168.0.25:8088/keywordshow/?part=MT1";
+        let url ="http://192.168.43.164:8088/keywordshow/?part=" + (this.props.data.id).toString();
+        //let url ="http://192.168.43.1155:8088/keywordshow/?part=MT1";
         axios.get(url).then((response) => {
           let data = response.data;
           $('#textpaper1 >p ').remove();
@@ -166,7 +166,7 @@ class MeetingAnalysis extends Component {
 
   renderAssokeyword() {
     let part = this.props.data.id;
-    let url ="http://10.250.65.114:8088/assokeyword/?meeting_id=" + (this.props.data.id).toString();
+    let url ="http://192.168.43.164:8088/assokeyword/?meeting_id=" + (this.props.data.id).toString();
 
     axios.get(url).then((response) => {
       let data = response.data;
@@ -291,7 +291,7 @@ class MeetingAnalysis extends Component {
                     return(
                       <tr key={i+1}>
                         <td scope="row">{i+1}</td>
-                        <td>{data.name}</td>
+                        <td>{data.userName}</td>
                         <td>{data.email}</td>
                         <td>{data.partName}</td>
                       </tr>
