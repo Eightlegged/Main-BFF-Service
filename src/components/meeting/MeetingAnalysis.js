@@ -24,9 +24,10 @@ class MeetingAnalysis extends Component {
         {label:'고객',value:9},
         {label:'트랜스',value:8}
    ]*/
-   let url ="http://192.168.0.25:8088/detailpietextword/?part=" + (this.props.data.id).toString();
+   let part = this.props.data.id;
+   let url ="http://192.168.0.25:8088/detailpietextword/";
    //let url ="http://192.168.0.25:8088/detailpietextword/?part=MT1"
-   axios.get(url).then((response) => {
+   axios.post(url, {part}).then((response) => {
      let data = response.data;
      var sum =0;
      for(var i in data){
@@ -38,7 +39,8 @@ class MeetingAnalysis extends Component {
      ReactDOM.render(
          <PieChart data={data} radius={120} innerRadius={20} width={450} height={400} />,
        document.getElementById('pie'));
-   }).catch((error) => {
+   })
+   .catch((error) => {
        // FAILED
        ReactDOM.render(
            <div/>,
@@ -85,12 +87,12 @@ class MeetingAnalysis extends Component {
   }
 
   renderStructedPaper() {
-        var text = '스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중 스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중. 스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중. 첫째로 치한 방지, 둘째로 여성, 초등학생 및 미취학 아동, 신체 부자유자와 보호자의 안심 이용을 목적으로 여성 전용차량을 도입하였습니다. 자세한 사항은 「지하철 승차 시에 고려해야 할 점」 페이지를 참조하십시오. 여러분의 이해와 협조에 감사드립니다. 예를 들어 다음과 같은 글을 쓴다면 이렇게 ex)가 앞에 붙어서 나오는 놀라운 일이 벌어집니다. 구조화 기능은 예시를 계속 추가해 주어야 더욱 자세하게 작동합니다.'
-
-      //let url ="http://192.168.0.25:8088/showpaper/?part=" + (this.props.data.id).toString();
+        //var text = '스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중 스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중. 스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중. 첫째로 치한 방지, 둘째로 여성, 초등학생 및 미취학 아동, 신체 부자유자와 보호자의 안심 이용을 목적으로 여성 전용차량을 도입하였습니다. 자세한 사항은 「지하철 승차 시에 고려해야 할 점」 페이지를 참조하십시오. 여러분의 이해와 협조에 감사드립니다. 예를 들어 다음과 같은 글을 쓴다면 이렇게 ex)가 앞에 붙어서 나오는 놀라운 일이 벌어집니다. 구조화 기능은 예시를 계속 추가해 주어야 더욱 자세하게 작동합니다.'
+        let part = this.props.data.id;
+        let url ="http://192.168.0.25:8088/showpaper/";
       //let url ="http://192.168.0.25:8088/showpaper/?part=MT1"
-      //  axios.get(url).then((response) => {
-      //    let text = response.data;
+        axios.post(url, {part}).then((response) => {
+          let text = response.data;
           $('#originaltext').append('<p>' + text + '</p>');
           $('#textpaper >p ').remove();
   				text = text.replace(/첫번째/gi, "<br><br>1.");
@@ -115,12 +117,12 @@ class MeetingAnalysis extends Component {
   				text = text.replace(/예로/gi, "<br><br>ex)");
   				$('#textpaper').append('<p>' + text + '</p>');
           $('#textpaper').hide();
-      /*  }).catch((error) => {
+        }).catch((error) => {
             // FAILED
             ReactDOM.render(
                 <div/>,
               document.getElementById('#textpaper'));
-        });*/
+        });
 
 	}
 
@@ -135,10 +137,10 @@ class MeetingAnalysis extends Component {
         '브랜드','충성','높임','2','오리엔테이션','중심','의사','결정','촉진','성능','투명성','디지털화','화','3','새','모델','부응','세계','변혁','폭풍','조직운영','뿐','구조','전반','영향',
         '생산','창출','앞장'
       ];*/
-
-        let url ="http://192.168.0.25:8088/keywordshow/?part=" + (this.props.data.id).toString();
+        let part = this.props.data.id;
+        let url ="http://192.168.0.25:8088/keywordshow/";
         //let url ="http://192.168.0.25:8088/keywordshow/?part=MT1";
-        axios.get(url).then((response) => {
+        axios.post(url, {part}).then((response) => {
           let data = response.data;
           $('#textpaper1 >p ').remove();
           var str='<p style="word-break: option;">';
@@ -162,18 +164,82 @@ class MeetingAnalysis extends Component {
 
 	}
 
+  renderAssokeyword() {
+    let part = this.props.data.id;
+    let url ="http://192.168.0.25:8088/assokeyword/";
+
+    axios.post(url, {part}).then((response) => {
+      let data = response.data;
+				$('#assokeywordtable >tbody>tr').remove();
+				$('#assokeywordtable1 >tbody>tr').remove();
+				$('#assokeywordtable2 >tbody>tr').remove();
+
+				var str="";
+				var str1="";
+				var str2="";
+				for(var i=0;i<data.length;i++){
+					if(i==1)
+					str1+="<tr>";
+					for(var j=0;j<data[i].length;j++){
+						if(i==0)
+						str+="<tr>";
+						else if(i==1)
+							str1+="<td>"+data[i][j]+"</td>";
+						else if(i==2)
+						str2+="<tr>";
+						for(var k=0;k<data[i][j].length;k++){
+
+							if(i==0){
+								str+="<td>"+data[i][j][k]+"</td>";
+
+							}else if(i==1){
+
+							}else if(i==2){
+								str2+="<td>"+data[i][j][k]+"</td>";
+							}
+						}
+						if(i==0)
+						str+="</tr>";
+
+						else if(i==2)
+						str2+="</tr>";
+					}
+					if(i==1)
+						str1+="</tr>";
+				}
+
+				$('#assokeywordtable>tbody').append(str);
+				$('#assokeywordtable1>tbody').append(str1);
+				$('#assokeywordtable2>tbody').append(str2);
+				alert("완료되었습니다!");
+			}).catch((error) => {
+          // FAILED
+          ReactDOM.render(
+              <div/>,
+            document.getElementById('#assokeywordtable'));
+          ReactDOM.render(
+              <div/>,
+            document.getElementById('#assokeywordtable1'));
+          ReactDOM.render(
+                <div/>,
+            document.getElementById('#assokeywordtable2'));
+      });
+  }
+
   componentDidMount() {
     this.renderPieChart();
-    this.renderKeywordTable();
+    //this.renderKeywordTable();
     this.renderKeywordPaper();
     this.renderStructedPaper();
+    this.renderAssokeyword();
   }
 
   componentDidUpdate(prevProps, prevState){
     this.renderPieChart();
-    this.renderKeywordTable();
+    //this.renderKeywordTable();
     this.renderKeywordPaper();
     this.renderStructedPaper();
+    this.renderAssokeyword();
   }
 
   render(){
@@ -294,6 +360,55 @@ class MeetingAnalysis extends Component {
         <div className="col-lg-6 col-md-6">
           <div className="panel panel-default">
             <div className="panel-heading">
+              <h3 className="panel-title">
+                <i className="fa fa-long-arrow-right fa-fw"></i>카테고리분석
+              </h3>
+            </div>
+              <div className="table-responsive" style={{overflowY: "auto", maxHeight: "200px"}}>
+                <table className="table table-bordered table-hover table-striped"
+                  id="assokeywordtable1">
+                  <thead>
+                    <tr>
+                      <th>CATEGORY</th>
+                      <th>RELEVANCE</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                  </tbody>
+                </table>
+              </div>
+          </div>
+        </div>
+        <div className="col-lg-6 col-md-6">
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              <h3 className="panel-title">
+                <i className="fa fa-long-arrow-right fa-fw"></i>컨셉 분석
+              </h3>
+            </div>
+              <div className="table-responsive" style={{overflowY: "auto", maxHeight: "200px"}}>
+                <table className="table table-bordered table-hover table-striped"
+                  id="assokeywordtable2">
+                  <thead>
+                    <tr>
+                      <th>CONCEPT</th>
+                      <th>RELEVANCE</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                  </tbody>
+                </table>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-lg-6 col-md-6">
+          <div className="panel panel-default">
+            <div className="panel-heading">
 							<h3 className="panel-title">
 								<i className="fa fa-long-arrow-right fa-fw"></i>키워드 분석차트
 							</h3>
@@ -309,18 +424,17 @@ class MeetingAnalysis extends Component {
           <div className="panel panel-default">
             <div className="panel-heading">
 							<h3 className="panel-title">
-								<i className="fa fa-money fa-fw"></i>세부 키워드
+								<i className="fa fa-money fa-fw"></i>에이브릴 분석
 							</h3>
 						</div>
               <div className="table-responsive" style={{overflowY: "auto", maxHeight: "435px"}}>
                 <table className="table table-bordered table-hover table-striped"
-                  id="keywordtable">
+                  id="assokeywordtable">
                   <thead>
                     <tr>
-                      <th>Order #</th>
-                      <th>키워드</th>
-                      <th>키워드 수</th>
-
+                      <th>KEYWORD</th>
+                      <th>RELEVANCE</th>
+                      <th>SENTIMENT</th>
                     </tr>
                   </thead>
                   <tbody>

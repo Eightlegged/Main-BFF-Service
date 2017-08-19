@@ -146,7 +146,7 @@ class CreateMeeting extends React.Component {
 
                           <FormGroup row>
                             <Label>개요</Label>
-                            <Input type="textarea" name="comment" onChange={this.handleChange} value={this.state.comment} style={{resize: "none", overflowY: "auto", height: "250"}} />
+                            <Input type="textarea" name="comment" onChange={this.handleChange} value={this.state.comment} style={{resize: "none", overflowY: "auto", height: "200"}} />
                           </FormGroup>
 
                         </Form>

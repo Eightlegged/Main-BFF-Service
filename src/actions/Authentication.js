@@ -24,7 +24,7 @@ export function loginRequest(email, password) {
         dispatch(login());
         let P_url = 'http://192.168.0.15:8080/user/login';
         let url = 'api/user/login';
-        return axios.post(url, { email, password })
+        return axios.post(P_url, { email, password })
         .then((response) => {
             console.log(response);
             // SUCCEED

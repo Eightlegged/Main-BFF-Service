@@ -32,7 +32,7 @@ export function createMeetingRequest(title, content, date, userList, startTime, 
         dispatch(createMeeting());
         let P_url = 'http://192.168.0.15:8080/meeting/add';
         let url = 'api/meeting/add';
-        return axios.post(url, { title, content, date, userList, startTime, comment, partName, checkList })
+        return axios.post(P_url, { title, content, date, userList, startTime, comment, partName, checkList })
         .then((response) => {
             console.log(response);
             // SUCCEED
@@ -102,13 +102,13 @@ export function meetingListLoadRequest(id) {
       dispatch(meetingLoad());
       let P_url = 'http://192.168.0.15:8080/user/end/' + id;
       let url = 'api/user/end/' + id;
-      return axios.get(url)
+      return axios.get(P_url)
       .then((response) => {
         let end = response.data;
         console.log(response);
         let P_url = 'http://192.168.0.15:8080/user/wait/' + id;
         let url = 'api/user/wait/' + id;
-        return axios.get(url)
+        return axios.get(P_url)
         .then((res) => {
           let wait = res.data;
           console.log(end);
@@ -219,7 +219,7 @@ export function meetingSaveRequest(id, data, partName, checkList) {
         .then((response) => {
           console.log(response);
           let url = 'http://192.168.0.15:8080/meeting/end/' + id;
-          axios.post(url).then(
+          axios.post(url, {checkList}).then(
             (response) => {
               console.log(response);
               if(response.data.result == "FINISHED"){
