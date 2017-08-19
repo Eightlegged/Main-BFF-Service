@@ -85,7 +85,7 @@ class Header extends Component{
                   <span className="icon-bar"></span>
                   <span className="icon-bar"></span>
               </button>
-              <Link to="/" className="navbar-brand"><img alt="Brand" src={SmaLogo}/></Link>
+              <Link to="/" className="navbar-brand">SMA</Link>
           </div>
 
           <ul className="nav navbar-right top-nav">

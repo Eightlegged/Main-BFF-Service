@@ -11,7 +11,7 @@ class MeetingAnalysis extends Component {
   constructor(props) {
    super(props);
 
-
+   this.toggleText = this.toggleText.bind(this);
  }
 
  renderPieChart() {
@@ -79,13 +79,19 @@ class MeetingAnalysis extends Component {
 
   }
 
-  renderStructedPaper() {
-        //var text = '스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중 스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중. 스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중. 첫째로 치한 방지, 둘째로 여성, 초등학생 및 미취학 아동, 신체 부자유자와 보호자의 안심 이용을 목적으로 여성 전용차량을 도입하였습니다. 자세한 사항은 「지하철 승차 시에 고려해야 할 점」 페이지를 참조하십시오. 여러분의 이해와 협조에 감사드립니다. 예를 들어 다음과 같은 글을 쓴다면 이렇게 ex)가 앞에 붙어서 나오는 놀라운 일이 벌어집니다. 구조화 기능은 예시를 계속 추가해 주어야 더욱 자세하게 작동합니다.'
+  toggleText() {
+    $("#originaltext").toggle();
+    $("#textpaper").toggle();
+  }
 
-      let url ="http://192.168.0.25:8088/showpaper/?part=" + (this.props.data.id).toString();
+  renderStructedPaper() {
+        var text = '스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중 스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중. 스마 구조화 문서 작업의 예시로 들기위해서 지금 글을 작성중입니다. 구조화 작업을 위해서 지금 작성중중중중중. 첫째로 치한 방지, 둘째로 여성, 초등학생 및 미취학 아동, 신체 부자유자와 보호자의 안심 이용을 목적으로 여성 전용차량을 도입하였습니다. 자세한 사항은 「지하철 승차 시에 고려해야 할 점」 페이지를 참조하십시오. 여러분의 이해와 협조에 감사드립니다. 예를 들어 다음과 같은 글을 쓴다면 이렇게 ex)가 앞에 붙어서 나오는 놀라운 일이 벌어집니다. 구조화 기능은 예시를 계속 추가해 주어야 더욱 자세하게 작동합니다.'
+
+      //let url ="http://192.168.0.25:8088/showpaper/?part=" + (this.props.data.id).toString();
       //let url ="http://192.168.0.25:8088/showpaper/?part=MT1"
-        axios.get(url).then((response) => {
-          let text = response.data;
+      //  axios.get(url).then((response) => {
+      //    let text = response.data;
+          $('#originaltext').append('<p>' + text + '</p>');
           $('#textpaper >p ').remove();
   				text = text.replace(/첫번째/gi, "<br><br>1.");
   				text = text.replace(/두번째/gi, "<br><br>2.");
@@ -108,12 +114,13 @@ class MeetingAnalysis extends Component {
           text = text.replace(/중요한것은/gi, "<br><br>중요한것은,");
   				text = text.replace(/예로/gi, "<br><br>ex)");
   				$('#textpaper').append('<p>' + text + '</p>');
-        }).catch((error) => {
+          $('#textpaper').hide();
+      /*  }).catch((error) => {
             // FAILED
             ReactDOM.render(
                 <div/>,
               document.getElementById('#textpaper'));
-        });
+        });*/
 
 	}
 
@@ -173,21 +180,22 @@ class MeetingAnalysis extends Component {
     return (
     <div>
       <div className="row">
-        <div className="col-lg-12">
-          <h3>회의 기본 정보</h3>
+        <div className="col-lg-6 col-md-6">
           <div className="panel panel-default">
-            <div className="panel-body">
+            <div className="panel-heading">
+              <h3 className="panel-title">
+                <i className="fa fa-drivers-license-o fa-fw"></i> 기본 정보
+              </h3>
+            </div>
+            <div className="panel-body" style={{overflowY: "auto", maxHeight: "435px"}}>
               <h3>{this.props.data.title}</h3>
               <hr/>
+              <p><span className="label label-primary">파트</span> {'  '}{this.props.data.partName}</p>
               <p><span className="label label-success">날짜</span> {'  '}{this.props.data.date}</p>
               <p><span className="label label-warning">시간</span> {'  '}{this.props.data.startTime}</p>
-              <br/>
+              <p><span className="label label-info">목적</span> {'  '}{this.props.data.content}</p>
+              <p><span className="label label-danger">개요</span> {'  '}</p>
               <div className="panel panel-default">
-                <div className="panel-heading">
-    							<h4 className="panel-title">
-    								코멘트
-    							</h4>
-    						</div>
                 <div className="panel-body" style={{ overflowY: "auto", maxHeight: "250px"}}>
                     {this.props.data.comment}
                 </div>
@@ -195,51 +203,71 @@ class MeetingAnalysis extends Component {
             </div>
           </div>
         </div>
-      </div>
+        <div className="col-lg-6 col-md-6">
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              <h3 className="panel-title">
+                <i className="fa fa-users fa-fw"></i> 참석 명단
+              </h3>
+            </div>
+            <div className="table-responsive" style={{overflowY: "auto", maxHeight: "435px"}}>
+              <table className="table table-bordered table-hover table-striped">
+                <thead>
+                  <tr>
+                    <th>순서</th>
+                    <th>이름</th>
+                    <th>이메일</th>
+                    <th>파트</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.props.data.userList.map((data, i) => {
+                    return(
+                      <tr key={i+1}>
+                        <td scope="row">{i+1}</td>
+                        <td>{data.name}</td>
+                        <td>{data.email}</td>
+                        <td>{data.partName}</td>
+                      </tr>
+                    );
+                  })}
 
-      <div className="row">
-        <div className="col-lg-12">
-          <h3>회의 참가인원</h3>
-          <div className="table-responsive">
-            <table className="table table-bordered table-hover table-striped">
-              <thead>
-                <tr>
-                  <th>순서</th>
-                  <th>이름</th>
-                  <th>이메일</th>
-                  <th>파트</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.props.data.userList.map((data, i) => {
-                  return(
-                    <tr key={i+1}>
-                      <td scope="row">{i+1}</td>
-                      <td>{data.name}</td>
-                      <td>{data.email}</td>
-                      <td>{data.partName}</td>
-                    </tr>
-                  );
-                })}
-
-              </tbody>
-            </table>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-
 
       <div className="row">
         <div className="col-lg-12 col-md-12">
 
             <div className="panel panel-default">
               <div className="panel-heading">
-  							<h3 className="panel-title">
-  								<i className="fa fa-bar-chart-o fa-fw"></i> 구조화 문서
+  							<h3 className="panel-title" id="textpaperheader">
+  								<i className="fa fa-bar-chart-o fa-fw" ></i> <span id="structi">전문</span>
+                  <span className="pull-right"><button className="btn-info btn btn-xs" id="structb"
+                  onClick={() => {
+                    let name = $("#structi").text();
+                    if( name == "전문"){
+                      $("#structi").empty();
+                      $("#structi").append("구조화 문서");
+                      $("#structb").empty();
+                      $("#structb").append("전문");
+                    }else{
+                      $("#structi").empty();
+                      $("#structi").append("전문");
+                      $("#structb").empty();
+                      $("#structb").append("구조화");
+                    }
+                    $("#originaltext").toggle();
+                    $("#textpaper").toggle();
+                  }}>구조화</button></span>
   							</h3>
   						</div>
               <div className="panel-body" style={{ overflowY: "auto", maxHeight: "600px"}}>
                   <div id="textpaper"></div>
+                  <div id="originaltext"></div>
               </div>
             </div>
         </div>
@@ -270,7 +298,7 @@ class MeetingAnalysis extends Component {
 								<i className="fa fa-long-arrow-right fa-fw"></i>키워드 분석차트
 							</h3>
 						</div>
-            <div className="panel-body" style={{overflowX: "auto"}}>
+            <div className="panel-body" style={{overflow: "auto", maxHeight: "435px"}}>
               <div id="pie">
                 {this.renderPieChart()}
               </div>
@@ -284,7 +312,7 @@ class MeetingAnalysis extends Component {
 								<i className="fa fa-money fa-fw"></i>세부 키워드
 							</h3>
 						</div>
-              <div className="table-responsive" style={{overflowY: "auto", height: "435px"}}>
+              <div className="table-responsive" style={{overflowY: "auto", maxHeight: "435px"}}>
                 <table className="table table-bordered table-hover table-striped"
                   id="keywordtable">
                   <thead>

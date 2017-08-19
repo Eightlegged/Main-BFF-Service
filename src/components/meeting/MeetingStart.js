@@ -28,6 +28,9 @@ class MeetingStart extends Component{
     constructor(props){
       super(props);
 
+      this.state = {
+        checkList: this.props.data.checkList
+      }
 
       console.log('page created');
       this.handleChange = this.handleChange.bind(this);
@@ -36,10 +39,14 @@ class MeetingStart extends Component{
       console.log("바뀐거 확인222");
     }
 
-    handleChange(event) {
-
-        this.setState({value: event.target.value});
-
+    handleChange(e) {
+      console
+      let checkList = this.state.checkList;
+      checkList[e.target.name].checked = !checkList[e.target.name].checked;
+      this.setState({
+        checkList: checkList
+      });
+      console.log(checkList);
     }
 
     handleSubmit() {
@@ -50,9 +57,9 @@ class MeetingStart extends Component{
 
       let id = this.props.data.id;
       let partName = this.props.data.partName;
+      let checkList = this.state.checkList;
 
-
-      this.props.onMeetingSave(id, data, partName).then(
+      this.props.onMeetingSave(id, data, partName, checkList).then(
           (success) => {
               if(!success) {
                   alert('회의 생성 실패');
@@ -94,21 +101,22 @@ class MeetingStart extends Component{
         return (
           <div>
                 <div className="row">
-                  <div className="col-lg-12">
-                    <h3>회의 기본 정보</h3>
+                  <div className="col-lg-6 col-md-6">
                     <div className="panel panel-default">
-                      <div className="panel-body">
+                      <div className="panel-heading">
+                        <h3 className="panel-title">
+                          <i className="fa fa-drivers-license-o fa-fw"></i> 기본 정보
+                        </h3>
+                      </div>
+                      <div className="panel-body" style={{overflowY: "auto", maxHeight: "435px"}}>
                         <h3>{this.props.data.title}</h3>
-                        <br/>
+                        <hr/>
+                        <p><span className="label label-primary">파트</span> {'  '}{this.props.data.partName}</p>
                         <p><span className="label label-success">날짜</span> {'  '}{this.props.data.date}</p>
                         <p><span className="label label-warning">시간</span> {'  '}{this.props.data.startTime}</p>
-                        <br/>
+                        <p><span className="label label-info">목적</span> {'  '}{this.props.data.content}</p>
+                        <p><span className="label label-danger">개요</span> {'  '}</p>
                         <div className="panel panel-default">
-                          <div className="panel-heading">
-                            <h4 className="panel-title">
-                              <i className="fa fa-commenting-o fa-fw"></i>코멘트
-                            </h4>
-                          </div>
                           <div className="panel-body" style={{ overflowY: "auto", maxHeight: "250px"}}>
                               {this.props.data.comment}
                           </div>
@@ -116,14 +124,64 @@ class MeetingStart extends Component{
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="row" >
-                  <div className="col-lg-12">
-                    <h3>회의 시작</h3>
+                  <div className="col-lg-6 col-md-6">
+                    <div className="panel panel-default">
+                      <div className="panel-heading">
+                        <h3 className="panel-title">
+                          <i className="fa fa-users fa-fw"></i> 참석 명단
+                        </h3>
+                      </div>
+                      <div className="table-responsive" style={{overflowY: "auto", maxHeight: "435px"}}>
+                        <table className="table table-bordered table-hover table-striped">
+                          <thead>
+                            <tr>
+                              <th>순서</th>
+                              <th>이름</th>
+                              <th>이메일</th>
+                              <th>파트</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {this.props.data.userList.map((data, i) => {
+                              return(
+                                <tr key={i+1}>
+                                  <td scope="row">{i+1}</td>
+                                  <td>{data.name}</td>
+                                  <td>{data.email}</td>
+                                  <td>{data.partName}</td>
+                                </tr>
+                              );
+                            })}
 
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div className="row">
+                    <div className="col-lg-6 col-md-6">
+                      <div className="panel panel-default">
+                        <div className="panel-heading">
+                          <h3 className="panel-title">
+                            <i className="fa fa-check-square-o fa-fw"></i> 체크리스트
+                          </h3>
+                        </div>
+                        <ul className="list-group" style={{ height: 400, overflowY: "auto"}}>
+                          {this.props.data.checkList.map((data, i) => {
+                            return(
+                            <li className="list-group-item">
+                              <div className="form-check">
+                                <label className="form-check-label">
+                                  <input className="form-check-input" type="checkbox" name={i} onChange={this.handleChange} />
+                                  {' '}{data.item}
+                                </label>
+                              </div>
+                            </li>);
+                          })}
+                        </ul>
+                      </div>
+                    </div>
                     <div className="col-lg-6 col-md-6">
                       <div className="panel panel-default">
                         <div className="panel-heading">
@@ -132,45 +190,9 @@ class MeetingStart extends Component{
                           </h3>
                         </div>
                         <Input type="textarea" name="text" id="result_text" style={{resize: "none", height: 400, overflowY: "auto"}}
-                                   value={this.props.transcript} onChange={this.handleChange} />
+                                   value={this.props.transcript} />
                       </div>
                     </div>
-                    <div className="col-lg-6 col-md-6">
-                    <div className="panel panel-default">
-                      <div className="panel-heading">
-                        <h3 className="panel-title">
-                          <i className="fa fa-check-square-o fa-fw"></i>회의 체크리스트
-                        </h3>
-                      </div>
-                      <ul className="list-group" style={{ height: 500, overflowY: "auto"}}>
-                      
-                        <li className="list-group-item">
-                          <div className="form-check">
-                            <label className="form-check-label">
-                              <input className="form-check-input" type="checkbox" checked disabled />
-                              Option one is this and that&mdash;be sure to include why its great
-                            </label>
-                          </div>
-                        </li>
-                        <li className="list-group-item">
-                          <div className="form-check">
-                            <label className="form-check-label">
-                              <input className="form-check-input" type="checkbox" checked disabled />
-                              Option one is this and that&mdash;be sure to include why its great
-                            </label>
-                          </div>
-                        </li>
-                        <li className="list-group-item">
-                          <div className="form-check">
-                            <label className="form-check-label">
-                              <input className="form-check-input" type="checkbox" checked disabled />
-                              Option one is this and that&mdash;be sure to include why its great
-                            </label>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
                 </div>
 
                 <div className="row">

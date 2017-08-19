@@ -208,7 +208,7 @@ export function meetingLoadEnd() {
 
 /* MEETING_SAVE */
 
-export function meetingSaveRequest(id, data, partName) {
+export function meetingSaveRequest(id, data, partName, checkList) {
     return (dispatch) => {
         // Inform Login API is starting
         console.log(id);

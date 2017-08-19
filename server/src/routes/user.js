@@ -97,6 +97,7 @@ router.get('/wait/1', (req, res) => {
         }
       ],
       "status": "WAIT",
+      "checkList": [{"item":"check","checked":false},{"item":"check2","checked":false}],
       "partName": "Architecture" },
       { "id": 2,
       "title": "wait2",
@@ -121,6 +122,7 @@ router.get('/wait/1', (req, res) => {
           "name": "Faeyoung"
         }
       ],
+      "checkList": [{"item":"check","checked":false},{"item":"check2","checked":false}],
       "status": "WAIT",
       "partName": "Architecture" }
     ]);

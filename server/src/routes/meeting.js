@@ -34,6 +34,7 @@ router.get('/info/1', (req, res) => {
       }
     ],
     "status": "END",
+    "checkList": [{"item":"check","checked":false},{"item":"check2","checked":false}],
     "partName": "Architecture"
   });
 })

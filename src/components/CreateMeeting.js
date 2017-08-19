@@ -14,7 +14,8 @@ class CreateMeeting extends React.Component {
             startTime: "",
             comment: "",
             check: "",
-            checkList: []
+            checkList: [],
+            partName: "Communication"
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleCreateMeeting = this.handleCreateMeeting.bind(this);
@@ -51,8 +52,8 @@ class CreateMeeting extends React.Component {
             let user = this.state.user;
             let startTime = this.state.startTime;
             let comment = this.state.comment;
-            let partName = "Communication";
-            let checkList = this.state.checkList;
+            let partName = this.state.partName;
+            let checkList = [];
             let splitArray = user.split(", ");
             let userList = [];
             console.log(user);
@@ -65,6 +66,15 @@ class CreateMeeting extends React.Component {
               userList.push(obj);
             }
 
+            for(var i in this.state.checkList){
+              checkList.push(
+                {
+                  "item": this.state.checkList[i],
+                  "checked": false
+                }
+              )
+            }
+            console.log(partName);
             this.props.onCreateMeeting(title, content, date, userList, startTime, comment, partName, checkList).then(
                 (success) => {
                     if(!success) {
@@ -106,7 +116,17 @@ class CreateMeeting extends React.Component {
 
                           <FormGroup row>
                             <Label>목적</Label>
-                              <Input type="text" name="content" onChange={this.handleChange} value={this.state.content} />
+                            <Input type="text" name="content" onChange={this.handleChange} value={this.state.content} />
+                          </FormGroup>
+
+                          <FormGroup row>
+                            <Label>파트</Label>
+                            <Input type="select" name="partName" onChange={this.handleChange} value={this.state.partName}>
+                              <option value="Communication">Communication</option>
+                              <option value="Distribution">Distribution</option>
+                              <option value="Manufactoring">Manufactoring</option>
+                              <option value="VDI">VDI</option>
+                            </Input>
                           </FormGroup>
 
                           <FormGroup row>
@@ -126,7 +146,7 @@ class CreateMeeting extends React.Component {
 
                           <FormGroup row>
                             <Label>개요</Label>
-                            <Input type="textarea" name="comment" onChange={this.handleChange} value={this.state.comment} style={{resize: "none"}} />
+                            <Input type="textarea" name="comment" onChange={this.handleChange} value={this.state.comment} style={{resize: "none", overflowY: "auto", height: "250"}} />
                           </FormGroup>
 
                         </Form>

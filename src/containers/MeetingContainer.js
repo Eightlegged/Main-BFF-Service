@@ -66,8 +66,8 @@ const mapDispatchToProps = (dispatch) => {
         meetingLoadRequest: (data, status) => {
             return dispatch(meetingLoadRequest(data, status));
         },
-        meetingSaveRequest: (id, data, partName) => {
-            return dispatch(meetingSaveRequest(id, data, partName));
+        meetingSaveRequest: (id, data, partName, checkList) => {
+            return dispatch(meetingSaveRequest(id, data, partName, checkList));
         },
         meetingStatusNone: () => {
             return dispatch(meetingStatusNone());
