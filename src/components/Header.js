@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
+import SmaLogo from './SmaLogo.png';
 
 class Header extends Component{
   constructor(props) {
@@ -84,7 +85,7 @@ class Header extends Component{
                   <span className="icon-bar"></span>
                   <span className="icon-bar"></span>
               </button>
-              <Link to="/" className="navbar-brand">Smart Meeting Assistant</Link>
+              <Link to="/" className="navbar-brand"><img alt="Brand" src={SmaLogo}/></Link>
           </div>
 
           <ul className="nav navbar-right top-nav">
