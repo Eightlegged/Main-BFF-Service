@@ -22,7 +22,7 @@ export function loginRequest(email, password) {
     return (dispatch) => {
         // Inform Login http://smabackend.mybluemix.net is starting
         dispatch(login());
-        let P_url = 'http://192.168.1.164:8080/user/login';
+        let P_url = 'http://10.250.65.116:8080/user/login';
         let url = 'api/user/login';
         return axios.post(P_url, { email, password })
         .then((response) => {
